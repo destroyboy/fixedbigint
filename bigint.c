@@ -86,10 +86,6 @@ I* FROMINT(I *a, int64_t n) {
     return a;
 }
 
-void ASSIGN(I* dst, I* src) {
-    memcpy(dst, src, sizeof(I));
-}
-
 void NEGATE_INPLACE(I *n) {
     I one;
     FROMINT(&one, 1);
@@ -303,7 +299,7 @@ void TOSTRING(I *n0, char *s) {
     strcpy(s, ptr);
 }
 
-void FROMSTRING(I *n, char *s) {
+I* FROMSTRING(I *n, char *s) {
     FROMINT(n, 0);
     I digit, ten, result;
     FROMINT(&digit, 0);
@@ -326,6 +322,7 @@ void FROMSTRING(I *n, char *s) {
     ASSIGN(n, &result);
     if (negative)
         NEGATE_INPLACE(n);
+    return n;
 }
 
 void PRINTHEX(I* a) {

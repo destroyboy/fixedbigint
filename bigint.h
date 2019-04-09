@@ -13,8 +13,10 @@ typedef struct {
     uint32_t _[WORDS];
 } I;
 
+#define ASSIGN(dst,src) *(dst) = *(src)
+
 void FROMINT_NOSIGNEXTENSION(I *a, int64_t n);
-void ASSIGN(I* dst, I* src);
+//void ASSIGN(I* dst, I* src);
 I* FROMINT(I *a, int64_t n);
 void NEGATE_INPLACE(I *n);
 I* NEGATE(I *n, I *out);
@@ -39,7 +41,7 @@ I* MOD(I* m, I *n, I *r);
 void GCD(I* a, I* b, I* gcd);
 
 void TOSTRING(I *n0, char *s);
-void FROMSTRING(I *n, char *s);
+I* FROMSTRING(I *n, char *s);
 
 void PRINTHEX(I* a);
 void PRINTD(I *n0);

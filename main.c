@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "bigint.h"
+#include "lenstra.h"
 
 int main() {
 
@@ -19,15 +20,20 @@ int main() {
     MUL(&z, &z, &z2);
     MUL(&z2, &z, &z3);
 
-    //PRINTD(&x3);
-    //PRINTD(&y3);
-    //PRINTD(&z3);
+    PRINTD(&x3);
+    PRINTD(&y3);
+    PRINTD(&z3);
 
     ADD(&x3, &y3, &y3);
     ADD(&y3, &z3, &z3);
 
+    PRINTD(&z3);
+
     DIV(FROMINT(&a, -123), FROMINT(&b, 1230), &c);
     PRINTD(&c);
+
+    LENSTRA(FROMSTRING(&a, "763547931366553"), 1000, &b);
+    PRINTD(&b);
 
     //}
 

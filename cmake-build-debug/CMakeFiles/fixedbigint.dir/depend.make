@@ -9,5 +9,6 @@ CMakeFiles/fixedbigint.dir/lenstra.c.o: ../lenstra.c
 CMakeFiles/fixedbigint.dir/lenstra.c.o: ../lenstra.h
 
 CMakeFiles/fixedbigint.dir/main.c.o: ../bigint.h
+CMakeFiles/fixedbigint.dir/main.c.o: ../lenstra.h
 CMakeFiles/fixedbigint.dir/main.c.o: ../main.c
 

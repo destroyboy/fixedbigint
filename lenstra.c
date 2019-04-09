@@ -6,6 +6,8 @@
 #include "lenstra.h"
 #include "bigint.h"
 
+#include <stdio.h>
+
 
 long _seed = 123456789;
 long _m = 0x100000000L;
@@ -23,18 +25,22 @@ void k_random_digits(int digits, I* out) {
     char n[256];
     for (int i=0; i<digits; i++)
         n[i] = '0'+(int)(_rand()%10);
-    n[digits] = '\n';
+    n[digits] = '\0';
     FROMSTRING(out, n);
 }
 
 void k_random_range(I* n, I* out) {
     char buf[256];
     I m;
+    printf("in range:");
+    PRINTD(n);
     TOSTRING(n, buf);
     int digits = strlen(buf);
     for (int i=0;;i++) {
         k_random_digits(digits, &m);
         if (COMPARE(&m,n)<0) {
+            printf("selected:");
+            PRINTD(&m);
             ASSIGN(out, &m);
             return;
         }
@@ -169,12 +175,12 @@ void ELLIPTIC_MUL(I* k0, I p0[3], I* a, I* b, I* m, I out[3])
     }
 }
 
-# if 0
+# if 1
 // Lenstra's algorithm for factoring
 // Limit specifies the amount of work permitted
 void LENSTRA(I* n, int limit, I* out) {
 
-    I g, a, b, w1;
+    I g, a, b, w1, w2, w3, w4, w5, w6, w7;
     ASSIGN( &g, n );
     FROMINT( &a, 0 );
     FROMINT( &b, 0 );
@@ -187,34 +193,40 @@ void LENSTRA(I* n, int limit, I* out) {
 
     while ( COMPARE( &g, n ) == 0 ) {
         // Randomized x and y
-        I q[3];
         k_random_range(n, &q[0]);
         k_random_range(n, &q[1]);
         FROMINT(&q[2], 1);
         // Randomized curve coefficient a, computed b
         k_random_range(n, &a);
-        b = MOD(SUB(MUL(q[1], q[1]), (ADD(MUL(q[0], MUL(q[0], q[0])), MUL(a, q[0])))), n);
-        g = k_gcd(k_add(k_mul(k_mul("4",a),k_mul(a,a)),k_mul("27",k_mul(b,b))), n);  // singularity check
+        MOD( SUB( MUL( &q[1], &q[1], &w1), ADD( MUL( &q[0], MUL( &q[0], &q[0], &w2 ), &w4 ), MUL( &a, &q[0], &w3 ), &w5), &w6), n, &b);
+        GCD( ADD( MUL( MULx4( &a, &w1 ), MUL( &a, &a, &w2 ), &w3 ), MULx27( MUL( &b, &b, &w4 ), &w5 ), &w6 ), n, &g);  // singularity check
     }
 
     //print(a, b, g); print("\n");
 
     // If we got lucky, return lucky factor
-    if ( COMPARE( &g, FROMINT( &w1, 1 ) ) >0 )
-        return g;
+    if ( COMPARE( &g, FROMINT( &w1, 1 ) ) >0 ) {
+        memcpy(out, &g, 3*sizeof(I));
+        return;
+    }
 
     // increase k step by step until lcm(1, ..., limit)
-    for (String p: k_primes(Integer.parseInt(limit))) {
-        String pp = p;
-        print(p, "\n");
-        while (k_compare(pp,limit)<0) {
+    for (int i = 0; i < primeCount; i++) {
+        I p, pp;
+        FROMINT( &p, primes[i] );
+        ASSIGN( &pp, &p );
+
+        while (COMPARE( &p, FROMINT( &w1, limit ) ) <0 ) {
             //print("input:", p,"(", q[0],q[1],q[2], ")",a,b,n, "\n");
-            q = elliptic_mul(p, q, a, b, n, tt);
+            ELLIPTIC_MUL(&p, q, &a, &b, n, q);
             //print("output:", q[0],q[1],q[2]); print("\n");
             // Elliptic arithmetic breaks
-            if (k_compare(q[2],"1")>0)
-                return k_gcd(q[2], n);
-            pp = k_mul(p,pp);
+            if ( COMPARE( &q[2], FROMINT( &w1, 1 ) ) > 0 ) {
+                GCD(&q[2], &n, out);
+                return;
+            }
+
+            MUL( &p, &pp, &pp);
         }
     }
     FROMINT(out, 0);
