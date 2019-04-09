@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/alexis/CLionProjects/fixedbigint/bigint.c
+bigint.h
+/Users/alexis/CLionProjects/fixedbigint/bigint.h
+string.h
+-
+stdio.h
+-
+
+/Users/alexis/CLionProjects/fixedbigint/bigint.h
+stdint.h
+/Users/alexis/CLionProjects/fixedbigint/stdint.h
+

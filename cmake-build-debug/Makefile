@@ -123,6 +123,60 @@ fixedbigint/fast:
 	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/build
 .PHONY : fixedbigint/fast
 
+bigint.o: bigint.c.o
+
+.PHONY : bigint.o
+
+# target to build an object file
+bigint.c.o:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bigint.c.o
+.PHONY : bigint.c.o
+
+bigint.i: bigint.c.i
+
+.PHONY : bigint.i
+
+# target to preprocess a source file
+bigint.c.i:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bigint.c.i
+.PHONY : bigint.c.i
+
+bigint.s: bigint.c.s
+
+.PHONY : bigint.s
+
+# target to generate assembly for a file
+bigint.c.s:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bigint.c.s
+.PHONY : bigint.c.s
+
+lenstra.o: lenstra.c.o
+
+.PHONY : lenstra.o
+
+# target to build an object file
+lenstra.c.o:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/lenstra.c.o
+.PHONY : lenstra.c.o
+
+lenstra.i: lenstra.c.i
+
+.PHONY : lenstra.i
+
+# target to preprocess a source file
+lenstra.c.i:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/lenstra.c.i
+.PHONY : lenstra.c.i
+
+lenstra.s: lenstra.c.s
+
+.PHONY : lenstra.s
+
+# target to generate assembly for a file
+lenstra.c.s:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/lenstra.c.s
+.PHONY : lenstra.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -159,6 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... fixedbigint"
+	@echo "... bigint.o"
+	@echo "... bigint.i"
+	@echo "... bigint.s"
+	@echo "... lenstra.o"
+	@echo "... lenstra.i"
+	@echo "... lenstra.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

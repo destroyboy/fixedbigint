@@ -3,4 +3,4 @@ project(fixedbigint C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(fixedbigint main.c)
+add_executable(fixedbigint main.c bigint.c bigint.h lenstra.c lenstra.h)

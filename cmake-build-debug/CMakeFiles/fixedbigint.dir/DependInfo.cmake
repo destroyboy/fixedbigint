@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/alexis/CLionProjects/fixedbigint/bigint.c" "/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles/fixedbigint.dir/bigint.c.o"
+  "/Users/alexis/CLionProjects/fixedbigint/lenstra.c" "/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles/fixedbigint.dir/lenstra.c.o"
   "/Users/alexis/CLionProjects/fixedbigint/main.c" "/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
