@@ -7,7 +7,7 @@
 
 #include "stdint.h"
 
-# define WORDS (8)
+# define WORDS (12)
 
 typedef struct {
     uint32_t _[WORDS];
@@ -45,5 +45,6 @@ I* FROMSTRING(I *n, char *s);
 
 void PRINTHEX(I* a);
 void PRINTD(I *n0);
+void PRINTD_(I *n0);
 
 #endif //UNTITLED_BIGINT_H

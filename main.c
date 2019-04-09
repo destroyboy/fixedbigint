@@ -3,8 +3,7 @@
 #include "bigint.h"
 #include "lenstra.h"
 
-int main() {
-
+int test1() {
     //for (int i=0; i<10; i++) {
     I a, b, c, x, y, z, x2, y2, z2, x3, y3, z3;
     FROMSTRING(&x, "8866128975287528");
@@ -32,8 +31,12 @@ int main() {
     DIV(FROMINT(&a, -123), FROMINT(&b, 1230), &c);
     PRINTD(&c);
 
-    LENSTRA(FROMSTRING(&a, "763547931366553"), 1000, &b);
-    PRINTD(&b);
+    FROMSTRING(&a, "479001599" );
+    FROMSTRING(&b, "87178291199" );
+    MUL(&a, &b, &c);
+    PRINTD(&c);
+    LENSTRA_TEST(&c, 1000);
+    //PRINTD(&b);
 
     //}
 
@@ -52,6 +55,28 @@ int main() {
     //printf("%d\n", COMPARE(&a, &b));
     //PRINT(&q);
     //PRINT(&r);
+
+}
+
+int main() {
+
+    I a, b, m, p[3], q[3];
+
+    FROMSTRING(&p[0], "31262822083549469133");
+    FROMSTRING(&p[1], "30573415206366020260");
+    FROMSTRING(&p[2], "1");
+
+    FROMSTRING(&a, "23814385210563674141");
+    FROMSTRING(&b, "0");
+    FROMSTRING(&m, "41758540882408627201");
+
+    ELLIPTIC_ADD(p, p, &a, &b, &m, q);
+
+    PRINTD(&q[0]);
+    PRINTD(&q[1]);
+    PRINTD(&q[2]);
+
+    test1();
 
     return 0;
 }

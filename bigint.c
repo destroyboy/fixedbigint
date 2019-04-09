@@ -148,8 +148,8 @@ void DIVMOD0(I* m0, I* n0, I* q, I* r) {
     I m,n;
 
     //printf("DIVMOD_IN:\n");
-    //PRINT(m0);
-    //PRINT(n0);
+    //PRINTD(m0);
+    //PRINTD(n0);
 
     FROMINT(q, 0);
     ASSIGN(&m, m0);
@@ -179,7 +179,8 @@ void DIVMOD0(I* m0, I* n0, I* q, I* r) {
         if (ISZERO(&shift))
             break;
     }
-
+    //printf("DIVMOD_OUT:\n");
+    //PRINTD(q);
     ASSIGN(r, &m);
 }
 
@@ -206,23 +207,25 @@ I* MOD(I* m, I *n, I *r) {
     return NEGATE( MOD0( NEGATE(m, &w1), NEGATE(n, &w2), &w3), r);
 }
 
-I* DIV(I *m, I*n, I* q) {
+I* DIV(I *m0, I*n0, I* q) {
 
-    I w1, w2, r;
+    I m, n, w1, w2, r;
+    ASSIGN(&m, m0);
+    ASSIGN(&n, n0);
 
-    if (!ISNEGATIVE(m) && !ISNEGATIVE(n)) {
-        DIVMOD0(m, n, q, &r);
+    if (!ISNEGATIVE(&m) && !ISNEGATIVE(&n)) {
+        DIVMOD0(&m, &n, q, &r);
     }
-    if (!ISNEGATIVE(m) && ISNEGATIVE(n)) {
-        DIVMOD0(m, NEGATE(n, &w1), q, &r);
+    else if (!ISNEGATIVE(&m) && ISNEGATIVE(&n)) {
+        DIVMOD0(&m, NEGATE(&n, &w1), q, &r);
         NEGATE_INPLACE(q);
     }
-    else if (ISNEGATIVE(m) && !ISNEGATIVE(n)) {
-        DIVMOD0(NEGATE(m, &w1), n, q, &r);
+    else if (ISNEGATIVE(&m) && !ISNEGATIVE(&n)) {
+        DIVMOD0(NEGATE(&m, &w1), &n, q, &r);
         NEGATE_INPLACE(q);
     }
     else
-        DIVMOD0(NEGATE(m, &w1), NEGATE(n, &w2), q, &r);
+        DIVMOD0(NEGATE(&m, &w1), NEGATE(&n, &w2), q, &r);
 
     return q;
 }
@@ -263,8 +266,8 @@ void GCD(I* a0, I* b0, I* gcd) {
     ASSIGN(&b, b0);
     while (!ISZERO(&b)) {
         MOD( &a, &b, &r );
-        a = b;//ASSIGN(&a, &b);
-        b = r;//ASSIGN(&b, &r);
+        ASSIGN(&a, &b);
+        ASSIGN(&b, &r);
     }
     ASSIGN(gcd, &a);
 }
@@ -337,4 +340,10 @@ void PRINTD(I *n0) {
     char buf[256];
     TOSTRING(n0, buf);
     printf("%s\n", buf);
+}
+
+void PRINTD_(I *n0) {
+    char buf[256];
+    TOSTRING(n0, buf);
+    printf("%s", buf);
 }

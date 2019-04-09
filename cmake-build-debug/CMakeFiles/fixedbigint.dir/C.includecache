@@ -6,19 +6,15 @@
 
 #IncludeRegexTransform: 
 
+/Users/alexis/CLionProjects/fixedbigint/bigint.c
+bigint.h
+/Users/alexis/CLionProjects/fixedbigint/bigint.h
+string.h
+-
+stdio.h
+-
+
 /Users/alexis/CLionProjects/fixedbigint/bigint.h
 stdint.h
 /Users/alexis/CLionProjects/fixedbigint/stdint.h
-
-/Users/alexis/CLionProjects/fixedbigint/lenstra.h
-bigint.h
-/Users/alexis/CLionProjects/fixedbigint/bigint.h
-
-/Users/alexis/CLionProjects/fixedbigint/main.c
-stdio.h
--
-bigint.h
-/Users/alexis/CLionProjects/fixedbigint/bigint.h
-lenstra.h
-/Users/alexis/CLionProjects/fixedbigint/lenstra.h
 
