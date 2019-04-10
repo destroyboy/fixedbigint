@@ -1,82 +1,33 @@
 #include <stdio.h>
+#include <sys/time.h>
 
 #include "bigint.h"
 #include "lenstra.h"
 
-int test1() {
-    //for (int i=0; i<10; i++) {
-    I a, b, c, x, y, z, x2, y2, z2, x3, y3, z3;
-    FROMSTRING(&x, "8866128975287528");
-    FROMSTRING(&y, "-8778405442862239");
-    FROMSTRING(&z, "-2736111468807040");
+extern long _seed;
 
-    MUL(&x, &x, &x2);
-    MUL(&x2, &x, &x3);
+void test1() {
 
-    MUL(&y, &y, &y2);
-    MUL(&y2, &y, &y3);
-
-    MUL(&z, &z, &z2);
-    MUL(&z2, &z, &z3);
-
-    PRINTD(&x3);
-    PRINTD(&y3);
-    PRINTD(&z3);
-
-    ADD(&x3, &y3, &y3);
-    ADD(&y3, &z3, &z3);
-
-    PRINTD(&z3);
-
-    DIV(FROMINT(&a, -123), FROMINT(&b, 1230), &c);
-    PRINTD(&c);
-
-    FROMSTRING(&a, "479001599" );
-    FROMSTRING(&b, "87178291199" );
-    MUL(&a, &b, &c);
-    PRINTD(&c);
-    LENSTRA_TEST(&c, 1000);
-    //PRINTD(&b);
-
-    //}
-
-
-    //FROMINT(&b, 0xffffffffL);
-
-    //MUL(&a, &b, &c);
-    //PRINT(&c);
-    //PRINTD(&c);
-    //PRINT(&b);
-    //PRINTD(&a);
-    //DIVMOD0(&c, &c, &q, &r);
-
-    //FROMINT(&b, -11);
-    //printf("%d\n", COMPARE(&a,&b));
-    //printf("%d\n", COMPARE(&a, &b));
-    //PRINT(&q);
-    //PRINT(&r);
-
+    I c;
+    for (int i=0; i<100; i++) {
+        //printf("X:%d\n", i);
+        k_random_digits(20, &c);
+        //FROMSTRING(&c, "1009012267184813");
+        //_seed = 3410633414;
+        printf("%d ", i); PRINTD(&c);
+        LENSTRA_TEST(&c, 500);
+    }
 }
 
 int main() {
 
-    I a, b, m, p[3], q[3];
-
-    FROMSTRING(&p[0], "31262822083549469133");
-    FROMSTRING(&p[1], "30573415206366020260");
-    FROMSTRING(&p[2], "1");
-
-    FROMSTRING(&a, "23814385210563674141");
-    FROMSTRING(&b, "0");
-    FROMSTRING(&m, "41758540882408627201");
-
-    ELLIPTIC_ADD(p, p, &a, &b, &m, q);
-
-    PRINTD(&q[0]);
-    PRINTD(&q[1]);
-    PRINTD(&q[2]);
-
+    struct timeval stop, start;
+    gettimeofday(&start, NULL);
     test1();
+    gettimeofday(&stop, NULL);
+    printf("took %lu\n", stop.tv_sec - start.tv_sec);
+
+    //
 
     return 0;
 }

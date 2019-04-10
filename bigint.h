@@ -7,7 +7,7 @@
 
 #include "stdint.h"
 
-# define WORDS (12)
+# define WORDS (16)
 
 typedef struct {
     uint32_t _[WORDS];
@@ -15,7 +15,7 @@ typedef struct {
 
 #define ASSIGN(dst,src) *(dst) = *(src)
 
-void FROMINT_NOSIGNEXTENSION(I *a, int64_t n);
+I* FROMINT_NOSIGNEXTENSION(I *a, int64_t n);
 //void ASSIGN(I* dst, I* src);
 I* FROMINT(I *a, int64_t n);
 void NEGATE_INPLACE(I *n);

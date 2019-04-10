@@ -6,18 +6,7 @@
 
 #include <string.h>
 #include <stdio.h>
-
-static void _lshift_word(I* a, int nwords) {
-    int i;
-    /* Shift whole words */
-    for (i = (WORDS - 1); i >= nwords; --i) {
-        a->_[i] = a->_[i - nwords];
-    }
-    /* Zero pad shifted words. */
-    for (; i >= 0; --i) {
-        a->_[i] = 0;
-    }
-}
+#include <assert.h>
 
 static void _lshift_bit(I *a) {
     uint32_t carry=0;
@@ -46,10 +35,11 @@ static void _rshift_bit(I *a) {
     }
 }
 
-void FROMINT_NOSIGNEXTENSION(I *a, int64_t n) {
+I* FROMINT_NOSIGNEXTENSION(I *a, int64_t n) {
     memset(a, 0, sizeof(*a));
     a->_[0] = n;
     a->_[1] = n>>32;
+    return a;
 }
 
 int ISNEGATIVE(I* a) {
@@ -64,6 +54,16 @@ I* ADD(I *a, I *b, I *c) {
         carry >>= 32;
     }
     return c;
+}
+
+void ADD_INT(I *a, uint64_t carry, int shift_left) {
+    for (int i=shift_left; i<WORDS; i++) {
+        carry += (uint64_t)a->_[i];
+        a->_[i] = carry;
+        carry >>= 32;
+        if (carry==0)
+            break;
+    }
 }
 
 I* SUB(I *a, I *b, I *c) {
@@ -105,24 +105,17 @@ I* NEGATE(I *n0, I* out) {
 }
 
 I* MUL(I *a, I *b, I *c) {
-
-    I r,tmp;
-    int i, j;
-
+    I r;
     FROMINT(&r, 0);
-
-    for (i = 0; i < WORDS; ++i) {
-        for (j = 0; j < WORDS-i; ++j) {
-            FROMINT(&tmp, 0);
-            uint64_t intermediate = (uint64_t)a->_[i] * (uint64_t)b->_[j];
-            FROMINT_NOSIGNEXTENSION(&tmp, intermediate);
-            _lshift_word(&tmp, i + j);
-            ADD(&tmp, &r, &r);
-        }
+    for (int i = 0; i < WORDS; ++i) {
+        for (int j = 0; j < WORDS-i; ++j)
+            ADD_INT(&r, (uint64_t )b->_[i] * (uint64_t)a->_[j], i+j);
     }
+
     ASSIGN(c, &r);
     return c;
 }
+
 
 int ISZERO(I* a) {
     for (int i=0; i<WORDS; i++)
@@ -147,19 +140,10 @@ void DIVMOD0(I* m0, I* n0, I* q, I* r) {
     I shift;
     I m,n;
 
-    //printf("DIVMOD_IN:\n");
-    //PRINTD(m0);
-    //PRINTD(n0);
-
     FROMINT(q, 0);
     ASSIGN(&m, m0);
     ASSIGN(&n, n0);
     FROMINT(&shift, 1);
-
-    //int temp = COMPARE(&m,&n);
-
-    //printf("m:");PRINT(&m);
-    //printf("n:");PRINT(&n);
 
     I test;
     SUB(&m, &n, &test);
@@ -179,8 +163,6 @@ void DIVMOD0(I* m0, I* n0, I* q, I* r) {
         if (ISZERO(&shift))
             break;
     }
-    //printf("DIVMOD_OUT:\n");
-    //PRINTD(q);
     ASSIGN(r, &m);
 }
 

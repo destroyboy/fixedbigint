@@ -22,13 +22,18 @@ long _rand()
     return _seed;
 }
 
+uint64_t ran_count=0;
+
 void k_random_digits(int digits, I* out) {
     char n[256];
     for (int i=0; i<digits; i++)
         n[i] = '0'+(int)(_rand()%10);
     n[digits] = '\0';
     FROMSTRING(out, n);
+    //printf("rnd:"); PRINTD(out);
 }
+
+
 
 void k_random_range(I* n, I* out) {
     char buf[256];
@@ -37,15 +42,8 @@ void k_random_range(I* n, I* out) {
     //PRINTD(n);
     TOSTRING(n, buf);
     int digits = strlen(buf);
-    for (int i=0;;i++) {
-        k_random_digits(digits, &m);
-        if (COMPARE(&m,n)<0) {
-            //printf("selected:");
-            //PRINTD(&m);
-            ASSIGN(out, &m);
-            return;
-        }
-    }
+    k_random_digits(digits, &m);
+    MOD0(&m, n, out);
 }
 
 int isComposite[PRIMEMAX+1];
@@ -70,16 +68,17 @@ void PRIMES() {
 // Finds modular inverse
 // Returns inverse, unused helper and gcd
 void MODULAR_INV(I* a, I* b, I out[3]) {
+
     if (ISZERO(b)) {
         FROMINT(&out[0], 1);
         FROMINT(&out[1], 0);
         ASSIGN(&out[2], a);
         return;
     }
-    I q,r;
-    //PRINTD_(a); printf(" "); PRINTD(b);
 
-    DIVMOD0(a,b,&q,&r);
+    I q,r;
+
+    DIVMOD0( a, b, &q, &r);
     // String q=t[0], r=t[1];
     const int X=0, Y=1, G=2;
     // String[] xyg = modular_inv(b, r, t);
@@ -92,10 +91,6 @@ void MODULAR_INV(I* a, I* b, I out[3]) {
 
 // Addition in Elliptic curve modulo m space
 void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]) {
-
-    //PRINTD(m);
-
-
 
     // If one point is infinity, return other one
     if (ISZERO(&p[2])) {
@@ -141,26 +136,13 @@ void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]) {
 
     I num_times_inv;
     MUL(&num, &inv_g[INV], &num_times_inv);
-    //PRINTD(&num_times_inv);
-    /*
-     *
-     * z = (num * inv * num * inv - p[0] - q[0]) % m
-    #  print "add out:", z, (num * inv * (p[0] - z) - p[1]) % m, 1
-       return z, (num * inv * (p[0] - z) - p[1]) % m, 1
-     */
+    I z;
 
-    I z; // String z = k_mod(k_add(k_mul(num_times_inv,num_times_inv),negate(k_add(p[0],q[0]))), m);
-    //PRINTD(&num_times_inv);
-    //MUL(&num_times_inv, &num_times_inv, &w1);
-    //PRINTD(&w1);
     MOD(SUB(MUL(&num_times_inv, &num_times_inv, &w1), ADD(&p[0], &q[0], &w2), &w3), m, &z );
 
     ASSIGN( &out[0], &z );
     MOD(SUB(MUL(&num_times_inv, SUB(&p[0], &z, &w1), &w2), &p[1], &w3), m, &out[1]);
     FROMINT(&out[2], 1);
-    //String[] t = new String[]{z, k_mod(k_add(k_mul(num_times_inv,k_add(p[0],negate(z))), negate(p[1])), m), "1"};
-    //print("add out:", "(", t[0],t[1],t[2], ")", "\n");
-    //return t;
 }
 
 // Multiplication (repeated addition and doubling)
@@ -173,29 +155,21 @@ void ELLIPTIC_MUL(I* k0, I p0[3], I* a, I* b, I* m, I out[3])
     FROMINT(&r[0], 0);
     FROMINT(&r[1], 1);
     FROMINT(&r[2], 0);
-    //String[] r = new String[]{"0", "1", "0"};  // Infinity
-    while (COMPARE(&k, FROMINT(&w1, 0)) > 0) {
+
+    while ( !ISZERO( &k ) ){
         // p is failure, return it
         if ( COMPARE(&p[2],FROMINT(&w1, 1)) > 0 ) {
             memcpy(out, p, 3*sizeof(I));
             return;
         }
-// void ELLIPTIC_ADD(I p[3], I q[3], I a, I b, I m, I out[3]) {
+
         if ( COMPARE( MOD( &k, FROMINT( &w1, 2 ), &w3), FROMINT(&w2, 1))==0) {
-            //printf("m-1 "); PRINTD_(&p[0]); printf(" "); PRINTD_(&p[1]); printf(" "); PRINTD_(&p[2]); printf("\n");
-            //printf("m0 "); PRINTD_(&r[0]); printf(" "); PRINTD_(&r[1]); printf(" "); PRINTD_(&r[2]); printf("\n");
             ELLIPTIC_ADD(p, r, a, b, m, w4);
             memcpy(r, w4, 3*sizeof(I));
-            //printf("m1 "); PRINTD_(&r[0]); printf(" "); PRINTD_(&r[1]); printf(" "); PRINTD_(&r[2]); printf("\n");
         }
-        //printf("k:");PRINTD(&k);
-        DIVx2(&k); // k is positive, could simply shift
-        //print("add:", "(", p[0],p[1],p[2], ")", "(", r[0],r[1],r[2], ")", a, b, m);
-        //printf("m2 "); PRINTD_(&p[0]); printf(" "); PRINTD_(&p[1]); printf(" "); PRINTD_(&p[2]); printf(" m: "); PRINTD_(m); printf(" a: "); PRINTD_(a); printf("\n");
+        DIVx2(&k);
         ELLIPTIC_ADD(p, p, a, b, m, w4);
-        //PRINTD(m);
         memcpy(p, w4, 3*sizeof(I));
-        //printf("m3 "); PRINTD_(&p[0]); printf(" "); PRINTD_(&p[1]); printf(" "); PRINTD_(&p[2]); printf("\n");
     }
 
     memcpy(out, r, 3*sizeof(I));
@@ -205,7 +179,7 @@ void ELLIPTIC_MUL(I* k0, I p0[3], I* a, I* b, I* m, I out[3])
 // Limit specifies the amount of work permitted
 void LENSTRA(I* n0, int limit, I* out) {
 
-    I n, g, a, b, w1, w2, w3, w4, w5, w6, w7;
+    I n, g, a, b, w1, w2, w3, w4, w5, w6;
     ASSIGN(&n, n0);
     ASSIGN(&g, n0);
     FROMINT( &a, 0 );
@@ -241,24 +215,12 @@ void LENSTRA(I* n0, int limit, I* out) {
         FROMINT( &p, primes[i] );
         ASSIGN( &pp, &p );
 
-        //printf("p:"); PRINTD(&p);
-
-        int j=0;
-
-        while (COMPARE( &pp, FROMINT( &w1, limit ) ) <0 ) {
-            //print("input:", p,"(", q[0],q[1],q[2], ")",a,b,n, "\n");
-            //printf("\ninput: ");
-            //PRINTD_(&p); printf(" "); PRINTD_(&q[0]); printf(" "); PRINTD_(&q[1]); printf(" "); PRINTD_(&q[2]); printf(" "); PRINTD_(&a); printf(" "); PRINTD_(&b); printf(" "); PRINTD_(&n); printf("\n");
+        while (COMPARE( &pp, FROMINT( &w1, limit ) ) < 0 ) {
             ELLIPTIC_MUL(&p, q, &a, &b, &n, q);
-            //printf("output: ");
-            //PRINTD_(&q[0]); printf(" "); PRINTD_(&q[1]); printf(" "); PRINTD_(&q[2]); printf("\n");
-            //print("output:", q[0],q[1],q[2]); print("\n");
-            // Elliptic arithmetic breaks
             if ( COMPARE( &q[2], FROMINT( &w1, 1 ) ) > 0 ) {
-                GCD(&q[2], &n, out);
+                GCD( &q[2], &n, out );
                 return;
             }
-
             MUL( &p, &pp, &pp);
         }
     }
@@ -266,17 +228,22 @@ void LENSTRA(I* n0, int limit, I* out) {
 }
 
 
-void LENSTRA_TEST(I *n, int limit) {
+void LENSTRA_TEST(I *n0, int limit) {
 
     PRIMES();
 
-    I p;
+    I p, n;
+    ASSIGN(&n, n0);
     FROMINT(&p, 1);
     //printf("p:");PRINTD(&p);
-    for (int i=0;i <3; i++) {
+    for (int i=0;i < 5; i++) {
         I m;
-        printf("i=%d\n", i);
-        LENSTRA(n, limit, &m);
+        printf("n:"); PRINTD(&n);
+        char buf[256];
+        TOSTRING(&n, buf);
+        //if (strcmp(buf, "1009012267184813")==0)
+        //    printf("%ld\n", _seed);
+        LENSTRA(&n, limit, &m);
         //break;
         if (ISZERO(&m))
             continue;
@@ -284,12 +251,14 @@ void LENSTRA_TEST(I *n, int limit) {
         //printf("1m:");PRINTD(&m);
         //printf("1p:");PRINTD(&p);
         I tmp;
-        DIV(n, &m, &tmp);
-        ASSIGN(n, &tmp);
+        DIV(&n, &m, &tmp);
+        ASSIGN(&n, &tmp);
         MUL(&p, &m, &p);
         //printf("2n:");PRINTD(n);
-        printf("2m:");PRINTD(&m);
-        break;
+        PRINTD(&m);
+        //break;
         //printf("2p:");PRINTD(&p);
     }
+
+    //printf("%d\n", ran_count);
 }
