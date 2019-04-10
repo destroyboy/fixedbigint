@@ -137,33 +137,30 @@ void DIVx2(I *a) {
 }
 
 void DIVMOD0(I* m0, I* n0, I* q, I* r) {
-    I shift;
-    I m,n;
+    //I shift;
+    I n;
 
-    FROMINT(q, 0);
-    ASSIGN(&m, m0);
+    uint32_t s0 = 0;
+
+    memset(q, 0, sizeof(I));
+    ASSIGN(r, m0);
     ASSIGN(&n, n0);
-    FROMINT(&shift, 1);
 
-    I test;
-    SUB(&m, &n, &test);
-    //printf("test:");PRINT(&test);
-
-    while (COMPARE(&m, &n)>0) {
-        _lshift_bit(&shift);
+    while (COMPARE(r, &n)>0) {
+        s0++;
         _lshift_bit(&n);
     }
+
     for (;;) {
-        if (COMPARE(&n,&m)<=0) {
-            SUB(&m, &n, &m);
-            ADD(q, &shift, q);
+        if (COMPARE(&n, r)<=0) {
+            SUB(r, &n, r);
+            ADD_INT(q, 1u<<(s0&31u), s0>>5u);
         }
-        _rshift_bit(&shift);
-        _rshift_bit(&n);
-        if (ISZERO(&shift))
+        if (s0==0)
             break;
+        s0--;
+        _rshift_bit(&n);
     }
-    ASSIGN(r, &m);
 }
 
 I* MOD0(I* m, I *n, I *r) {

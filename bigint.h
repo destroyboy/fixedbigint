@@ -7,7 +7,7 @@
 
 #include "stdint.h"
 
-# define WORDS (16)
+# define WORDS (12)
 
 typedef struct {
     uint32_t _[WORDS];
@@ -28,6 +28,7 @@ int COMPARE(I* a, I* b);
 I* ADD(I *a, I *b, I *c);
 I* SUB(I *a, I *b, I *c);
 I* MUL(I *a, I *b, I *c);
+I* MUL_INT(I *a, uint64_t b, I *c);
 I* MULx2(I *src, I* dst);
 I* MULx3(I *src, I*dst);
 I* MULx4(I *src, I* dst);

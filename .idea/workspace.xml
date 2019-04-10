@@ -12,18 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc3e915b-29f8-468b-bf73-117738204e9a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bigint.c" beforeDir="false" afterPath="$PROJECT_DIR$/bigint.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bigint.h" beforeDir="false" afterPath="$PROJECT_DIR$/bigint.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/C.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/bigint.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/lenstra.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/fixedbigint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lenstra.c" beforeDir="false" afterPath="$PROJECT_DIR$/lenstra.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -48,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            <state relative-caret-position="-23">
+              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -63,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bigint.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+            <state relative-caret-position="923">
+              <caret line="76" column="1" selection-start-line="76" selection-start-column="1" selection-end-line="76" selection-end-column="1" />
               <folding>
                 <element signature="e#50#69#0" expanded="true" />
               </folding>
@@ -72,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bigint.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -84,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lenstra.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-819">
-              <caret line="181" column="40" selection-start-line="181" selection-start-column="40" selection-end-line="181" selection-end-column="40" />
+            <state relative-caret-position="221">
+              <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
               <folding>
                 <element signature="e#49#68#0" expanded="true" />
               </folding>
@@ -106,10 +100,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>assign</find>
-      <find>in range</find>
       <find>c</find>
-      <find>divmod</find>
       <find>memcpy</find>
       <find>printd</find>
       <find>&quot;input</find>
@@ -130,10 +121,15 @@
       <find>div</find>
       <find>mul</find>
       <find>random</find>
-      <find>seed</find>
       <find>fromi</find>
       <find>add</find>
       <find>add_int</find>
+      <find>seed</find>
+      <find>from</find>
+      <find>div(</find>
+      <find>divmod</find>
+      <find>divmo</find>
+      <find>compar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -145,9 +141,9 @@
         <option value="$PROJECT_DIR$/lenstra.h" />
         <option value="$PROJECT_DIR$/lenstra.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/bigint.h" />
-        <option value="$PROJECT_DIR$/bigint.c" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/bigint.c" />
+        <option value="$PROJECT_DIR$/bigint.h" />
       </list>
     </option>
   </component>
@@ -217,7 +213,7 @@
       <option name="presentableId" value="Default" />
       <updated>1554796349892</updated>
       <workItem from="1554796351435" duration="1930000" />
-      <workItem from="1554798991248" duration="35281000" />
+      <workItem from="1554798991248" duration="45892000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1554796464479</created>
@@ -247,11 +243,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554831900814</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ok, fixed some bugs, made some optimisations and now its nearly as fast as the python implementation. Not sure how to make it faster, maybe store the position of the MSB or MS word in the struct and use that to terminate the math operation. It sped it up to note when there was no more carry when adding a small int to a bigint.">
+      <created>1554893768233</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1554893768233</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37211000" />
+    <option name="totallyTimeSpent" value="47822000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="18" y="23" width="1422" height="877" extended-state="0" />
@@ -262,13 +265,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.15159236" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4101911" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25732484" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3821656" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.40509555" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32866243" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -287,7 +290,8 @@
     <MESSAGE value="added code" />
     <MESSAGE value="first version that compiles and lenstra function returns a factor. Need to compare against original code to see if it is actually working as expected" />
     <MESSAGE value="got seriously stressed debugging this, comparing with python lenstra.py, but seems to work now although very dissapointed with the speed" />
-    <option name="LAST_COMMIT_MESSAGE" value="got seriously stressed debugging this, comparing with python lenstra.py, but seems to work now although very dissapointed with the speed" />
+    <MESSAGE value="ok, fixed some bugs, made some optimisations and now its nearly as fast as the python implementation. Not sure how to make it faster, maybe store the position of the MSB or MS word in the struct and use that to terminate the math operation. It sped it up to note when there was no more carry when adding a small int to a bigint." />
+    <option name="LAST_COMMIT_MESSAGE" value="ok, fixed some bugs, made some optimisations and now its nearly as fast as the python implementation. Not sure how to make it faster, maybe store the position of the MSB or MS word in the struct and use that to terminate the math operation. It sped it up to note when there was no more carry when adding a small int to a bigint." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -296,6 +300,16 @@
           <url>file://$PROJECT_DIR$/lenstra.c</url>
           <line>41</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/bigint.c</url>
+          <line>153</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/bigint.c</url>
+          <line>129</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -332,10 +346,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lenstra.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-819">
-          <caret line="181" column="40" selection-start-line="181" selection-start-column="40" selection-end-line="181" selection-end-column="40" />
+        <state relative-caret-position="221">
+          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
           <folding>
             <element signature="e#49#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-23">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bigint.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="923">
+          <caret line="76" column="1" selection-start-line="76" selection-start-column="1" selection-end-line="76" selection-end-column="1" />
+          <folding>
+            <element signature="e#50#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -343,27 +377,7 @@
     <entry file="file://$PROJECT_DIR$/bigint.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bigint.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
-          <folding>
-            <element signature="e#50#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
         </state>
       </provider>
     </entry>
