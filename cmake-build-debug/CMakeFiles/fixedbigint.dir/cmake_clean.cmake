@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/fixedbigint.dir/main.c.o"
   "CMakeFiles/fixedbigint.dir/bigint.c.o"
   "CMakeFiles/fixedbigint.dir/lenstra.c.o"
+  "CMakeFiles/fixedbigint.dir/varint.c.o"
   "fixedbigint.pdb"
   "fixedbigint"
 )

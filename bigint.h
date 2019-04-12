@@ -7,16 +7,14 @@
 
 #include "stdint.h"
 
-# define WORDS (12)
+# define BIGINT_WORDS (16)
 
 typedef struct {
-    uint32_t _[WORDS];
+    uint32_t _[BIGINT_WORDS];
 } I;
 
 #define ASSIGN(dst,src) *(dst) = *(src)
 
-I* FROMINT_NOSIGNEXTENSION(I *a, int64_t n);
-//void ASSIGN(I* dst, I* src);
 I* FROMINT(I *a, int64_t n);
 void NEGATE_INPLACE(I *n);
 I* NEGATE(I *n, I *out);
@@ -24,6 +22,7 @@ I* NEGATE(I *n, I *out);
 int ISNEGATIVE(I* a);
 int ISZERO(I* a);
 int COMPARE(I* a, I* b);
+int COMPARE_UNSIGNED(I* a, I* b);
 
 I* ADD(I *a, I *b, I *c);
 I* SUB(I *a, I *b, I *c);

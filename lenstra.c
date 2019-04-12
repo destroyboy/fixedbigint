@@ -10,10 +10,10 @@
 #include <assert.h>
 
 
-long _seed = 123456789;
-long _m = 0x100000000L;
-long _a = 1103515245;
-long _c = 12345;
+static long _seed = 123456789;
+static long _m = 0x100000000L;
+static long _a = 1103515245;
+static long _c = 12345;
 
 long _rand()
 {
@@ -21,8 +21,6 @@ long _rand()
     //print(_seed); print ("\n");
     return _seed;
 }
-
-uint64_t ran_count=0;
 
 void k_random_digits(int digits, I* out) {
     char n[256];
@@ -105,7 +103,7 @@ void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]) {
 
     I num, denom, w1, w2, w3;
 
-    if ( COMPARE( &p[0], &q[0] ) == 0 ) {
+    if ( COMPARE_UNSIGNED( &p[0], &q[0] ) == 0 ) {
         if ( ISZERO( MOD( ADD(&p[1], &q[1], &w1 ), m, &w2 ) ) ) {
             FROMINT( &out[0], 0 );
             FROMINT( &out[1], 1 );
@@ -163,7 +161,7 @@ void ELLIPTIC_MUL(I* k0, I p0[3], I* a, I* b, I* m, I out[3])
             return;
         }
 
-        if ( COMPARE( MOD( &k, FROMINT( &w1, 2 ), &w3), FROMINT(&w2, 1))==0) {
+        if ( COMPARE_UNSIGNED( MOD( &k, FROMINT( &w1, 2 ), &w3), FROMINT(&w2, 1))==0) {
             ELLIPTIC_ADD(p, r, a, b, m, w4);
             memcpy(r, w4, 3*sizeof(I));
         }
@@ -191,7 +189,7 @@ void LENSTRA(I* n0, int limit, I* out) {
 
     //String[] q = new String[]{"0", "1", "0"}; // infinity? doesnt matter gets overwritten
 
-    while ( COMPARE( &g, &n ) == 0 ) {
+    while ( COMPARE_UNSIGNED( &g, &n ) == 0 ) {
 
         // Randomized x and y
         k_random_range(&n, &q[0]);
@@ -204,7 +202,7 @@ void LENSTRA(I* n0, int limit, I* out) {
     }
 
     // If we got lucky, return lucky factor
-    if ( COMPARE( &g, FROMINT( &w1, 1 ) ) >0 ) {
+    if ( COMPARE( &g, FROMINT( &w1, 1 ) ) > 0 ) {
         ASSIGN(out, &g);
         return;
     }

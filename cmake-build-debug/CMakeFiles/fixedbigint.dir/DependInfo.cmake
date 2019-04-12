@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/alexis/CLionProjects/fixedbigint/bigint.c" "/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles/fixedbigint.dir/bigint.c.o"
   "/Users/alexis/CLionProjects/fixedbigint/lenstra.c" "/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles/fixedbigint.dir/lenstra.c.o"
   "/Users/alexis/CLionProjects/fixedbigint/main.c" "/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o"
+  "/Users/alexis/CLionProjects/fixedbigint/varint.c" "/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles/fixedbigint.dir/varint.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

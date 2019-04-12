@@ -95,6 +95,12 @@
 		<Unit filename="/Users/alexis/CLionProjects/fixedbigint/main.c">
 			<Option target="fixedbigint"/>
 		</Unit>
+		<Unit filename="/Users/alexis/CLionProjects/fixedbigint/varint.c">
+			<Option target="fixedbigint"/>
+		</Unit>
+		<Unit filename="/Users/alexis/CLionProjects/fixedbigint/varint.h">
+			<Option target="fixedbigint"/>
+		</Unit>
 		<Unit filename="/Users/alexis/CLionProjects/fixedbigint/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

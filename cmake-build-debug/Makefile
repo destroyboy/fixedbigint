@@ -204,6 +204,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/main.c.s
 .PHONY : main.c.s
 
+varint.o: varint.c.o
+
+.PHONY : varint.o
+
+# target to build an object file
+varint.c.o:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/varint.c.o
+.PHONY : varint.c.o
+
+varint.i: varint.c.i
+
+.PHONY : varint.i
+
+# target to preprocess a source file
+varint.c.i:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/varint.c.i
+.PHONY : varint.c.i
+
+varint.s: varint.c.s
+
+.PHONY : varint.s
+
+# target to generate assembly for a file
+varint.c.s:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/varint.c.s
+.PHONY : varint.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -222,6 +249,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... varint.o"
+	@echo "... varint.i"
+	@echo "... varint.s"
 .PHONY : help
 
 

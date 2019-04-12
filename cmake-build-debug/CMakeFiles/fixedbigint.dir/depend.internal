@@ -12,3 +12,7 @@ CMakeFiles/fixedbigint.dir/main.c.o
  /Users/alexis/CLionProjects/fixedbigint/bigint.h
  /Users/alexis/CLionProjects/fixedbigint/lenstra.h
  /Users/alexis/CLionProjects/fixedbigint/main.c
+ /Users/alexis/CLionProjects/fixedbigint/varint.h
+CMakeFiles/fixedbigint.dir/varint.c.o
+ /Users/alexis/CLionProjects/fixedbigint/varint.c
+ /Users/alexis/CLionProjects/fixedbigint/varint.h

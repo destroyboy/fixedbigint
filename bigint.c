@@ -8,59 +8,52 @@
 #include <stdio.h>
 #include <assert.h>
 
-static void _lshift_bit(I *a) {
+static void I_lshift_bit(I *a) {
     uint32_t carry=0;
-    for (int i=0; i<WORDS; i++) {
+    for (int i=0; i<BIGINT_WORDS; i++) {
         uint32_t result = carry | (a->_[i]<<1);
         carry = a->_[i]>>31;
         a->_[i] = result;
     }
 }
 
-static void _lshift_bits(I *a, int n) {
+static void I_lshift_bits(I *a, int n) {
     uint32_t carry=0;
-    for (int i=0; i<WORDS; i++) {
+    for (int i=0; i<BIGINT_WORDS; i++) {
         uint32_t result = carry | (a->_[i]<<n);
         carry = a->_[i]>>(32-n);
         a->_[i] = result;
     }
 }
 
-static void _rshift_bit(I *a) {
+static void I_rshift_bit(I *a) {
     uint32_t carry=0;
-    for (int i=WORDS-1; i>=0; i--) {
+    for (int i=BIGINT_WORDS-1; i>=0; i--) {
         uint32_t result = carry | (a->_[i]>>1);
         carry = a->_[i]<<31;
         a->_[i] = result;
     }
 }
 
-I* FROMINT_NOSIGNEXTENSION(I *a, int64_t n) {
-    memset(a, 0, sizeof(*a));
-    a->_[0] = n;
-    a->_[1] = n>>32;
-    return a;
-}
-
 int ISNEGATIVE(I* a) {
-    return (a->_[WORDS-1]>>31);
+    return (a->_[BIGINT_WORDS-1]>>31);
 }
 
 I* ADD(I *a, I *b, I *c) {
     uint64_t carry = 0;
-    for (int i=0; i<WORDS; i++) {
+    for (int i=0; i<BIGINT_WORDS; i++) {
         carry += (uint64_t)a->_[i] + (uint64_t)b->_[i];
         c->_[i] = carry;
-        carry >>= 32;
+        carry >>= 32u;
     }
     return c;
 }
 
 void ADD_INT(I *a, uint64_t carry, int shift_left) {
-    for (int i=shift_left; i<WORDS; i++) {
+    for (int i=shift_left; i<BIGINT_WORDS; i++) {
         carry += (uint64_t)a->_[i];
         a->_[i] = carry;
-        carry >>= 32;
+        carry >>= 32u;
         if (carry==0)
             break;
     }
@@ -68,10 +61,10 @@ void ADD_INT(I *a, uint64_t carry, int shift_left) {
 
 I* SUB(I *a, I *b, I *c) {
     uint64_t carry = 1;
-    for (int i=0; i<WORDS; i++) {
+    for (int i=0; i<BIGINT_WORDS; i++) {
         carry += (uint64_t)a->_[i] + (uint64_t)~b->_[i];
         c->_[i] = carry;
-        carry >>= 32;
+        carry >>= 32u;
     }
     return c;
 }
@@ -81,7 +74,7 @@ I* FROMINT(I *a, int64_t n) {
     a->_[0] = n;
     a->_[1] = n>>32;
     if (n<0)
-        for (int i=2; i<WORDS; i++)
+        for (int i=2; i<BIGINT_WORDS; i++)
             a->_[i] = -1;
     return a;
 }
@@ -89,7 +82,7 @@ I* FROMINT(I *a, int64_t n) {
 void NEGATE_INPLACE(I *n) {
     I one;
     FROMINT(&one, 1);
-    for (int i=0; i<WORDS; i++)
+    for (int i=0; i<BIGINT_WORDS; i++)
         n->_[i] = ~n->_[i];
     ADD(n, &one, n);
 }
@@ -98,7 +91,7 @@ I* NEGATE(I *n0, I* out) {
     I n;
     ASSIGN(&n, n0);
     FROMINT(out, 1);
-    for (int i=0; i<WORDS; i++)
+    for (int i=0; i<BIGINT_WORDS; i++)
         n._[i] = ~n._[i];
     ADD(&n, out, out);
     return out;
@@ -107,18 +100,24 @@ I* NEGATE(I *n0, I* out) {
 I* MUL(I *a, I *b, I *c) {
     I r;
     FROMINT(&r, 0);
-    for (int i = 0; i < WORDS; ++i) {
-        for (int j = 0; j < WORDS-i; ++j)
-            ADD_INT(&r, (uint64_t )b->_[i] * (uint64_t)a->_[j], i+j);
+    for (int i = 0; i < BIGINT_WORDS; ++i) {
+        uint64_t bb = (uint64_t )b->_[i];
+        if (bb==0)
+            continue;
+        for (int j = 0; j < BIGINT_WORDS-i; ++j) {
+            uint64_t aa = (uint64_t )a->_[j];
+            if (aa==0)
+                continue;
+            ADD_INT(&r, bb * aa, i+j);
+        }
     }
-
     ASSIGN(c, &r);
     return c;
 }
 
 
 int ISZERO(I* a) {
-    for (int i=0; i<WORDS; i++)
+    for (int i=0; i<BIGINT_WORDS; i++)
         if (a->_[i]!=0)
             return 0;
     return 1;
@@ -130,10 +129,23 @@ int COMPARE(I* a, I* b) {
     return ISNEGATIVE(&c) ? -1 : (ISZERO(&c)?0:1);
 }
 
+int COMPARE_UNSIGNED(I* a, I* b) {
+    for (int i = BIGINT_WORDS-1; i>=0; i--) {
+        int64_t c = (uint64_t )a->_[i] - (uint64_t )b->_[i];
+        if (c==0)
+            continue;
+        if (c<0)
+            return -1;
+        else
+            return 1;
+    }
+    return 0;
+}
+
 void DIVx2(I *a) {
-    uint32_t sign = a->_[WORDS-1];
-    _rshift_bit(a);
-    a->_[WORDS-1] |= sign;
+    uint32_t sign = a->_[BIGINT_WORDS-1];
+    I_rshift_bit(a);
+    a->_[BIGINT_WORDS-1] |= sign;
 }
 
 void DIVMOD0(I* m0, I* n0, I* q, I* r) {
@@ -146,20 +158,20 @@ void DIVMOD0(I* m0, I* n0, I* q, I* r) {
     ASSIGN(r, m0);
     ASSIGN(&n, n0);
 
-    while (COMPARE(r, &n)>0) {
+    while (COMPARE_UNSIGNED( r, &n ) > 0) {
         s0++;
-        _lshift_bit(&n);
+        I_lshift_bit(&n);
     }
 
     for (;;) {
-        if (COMPARE(&n, r)<=0) {
+        if (COMPARE_UNSIGNED(&n, r)<=0) {
             SUB(r, &n, r);
             ADD_INT(q, 1u<<(s0&31u), s0>>5u);
         }
         if (s0==0)
             break;
         s0--;
-        _rshift_bit(&n);
+        I_rshift_bit(&n);
     }
 }
 
@@ -211,30 +223,30 @@ I* DIV(I *m0, I*n0, I* q) {
 
 I* MULx2(I *src, I* dst) {
     ASSIGN(dst, src);
-    _lshift_bit(dst);
+    I_lshift_bit(dst);
     return dst;
 }
 
 I* MULx4(I *src, I* dst) {
     ASSIGN(dst, src);
-    _lshift_bits(dst,2);
+    I_lshift_bits(dst,2);
     return dst;
 }
 
 I* MULx3(I *src, I*dst) {
     ASSIGN(dst, src);
-    _lshift_bit(dst);
+    I_lshift_bit(dst);
     ADD(dst, src, dst);
     return dst;
 }
 
 I* MULx27(I *src, I*dst) {
     ASSIGN(dst, src);
-    _lshift_bits(dst, 3);
+    I_lshift_bits(dst, 3);
     ADD(dst, src, dst);
     I tmp;
     ASSIGN(&tmp, dst);
-    _lshift_bit(dst);
+    I_lshift_bit(dst);
     ADD(&tmp, dst, dst);
     return dst;
 }
@@ -309,7 +321,7 @@ I* FROMSTRING(I *n, char *s) {
 
 void PRINTHEX(I* a) {
     printf("0x");
-    for (int i=WORDS-1; i>=0; i--) {
+    for (int i=BIGINT_WORDS-1; i>=0; i--) {
         printf("%08X", a->_[i]);
     }
     printf("\n");

@@ -11,4 +11,8 @@ CMakeFiles/fixedbigint.dir/lenstra.c.o: ../lenstra.h
 CMakeFiles/fixedbigint.dir/main.c.o: ../bigint.h
 CMakeFiles/fixedbigint.dir/main.c.o: ../lenstra.h
 CMakeFiles/fixedbigint.dir/main.c.o: ../main.c
+CMakeFiles/fixedbigint.dir/main.c.o: ../varint.h
+
+CMakeFiles/fixedbigint.dir/varint.c.o: ../varint.c
+CMakeFiles/fixedbigint.dir/varint.c.o: ../varint.h
 
