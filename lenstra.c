@@ -38,7 +38,7 @@ void k_random_range(BI32_t* n, BI32_t* out) {
     BI32_t m;
     //printf("in range:");
     //PRINTD(n);
-    TOSTRING(n, buf);
+    BI32_toString(n, buf);
     int digits = strlen(buf);
     k_random_digits(digits, &m);
     MOD0(&m, n, out);
@@ -101,7 +101,7 @@ void ELLIPTIC_ADD(BI32_t p[3], BI32_t q[3], BI32_t* a, BI32_t* b, BI32_t* m, BI3
         return;
     }
 
-    BI32_t num, denom, w1, w2, w3;
+    BI32_t num, denom, w1, w2, w3, w4;
 
     if ( COMPARE_UNSIGNED( &p[0], &q[0] ) == 0 ) {
         if ( ISZERO( MOD( ADD(&p[1], &q[1], &w1 ), m, &w2 ) ) ) {
@@ -110,8 +110,8 @@ void ELLIPTIC_ADD(BI32_t p[3], BI32_t q[3], BI32_t* a, BI32_t* b, BI32_t* m, BI3
             FROMINT( &out[2], 0 );
             return;
         }
-        MOD( ADD( MULx3(MUL(&p[0], &p[0], &w1), &w2 ), a, &w3 ), m, &num );
-        MOD( MULx2( &p[1], &w1 ), m, &denom );
+        MOD( ADD( MUL(MUL(&p[0], &p[0], &w1), FROMINT(&w4, 3),&w2 ), a, &w3 ), m, &num );
+        MOD( MUL( &p[1], FROMINT(&w2,2), &w1 ), m, &denom );
     }
     else {
         MOD(SUB(&q[1], &p[1], &w1), m, &num );
@@ -165,7 +165,7 @@ void ELLIPTIC_MUL(BI32_t* k0, BI32_t p0[3], BI32_t* a, BI32_t* b, BI32_t* m, BI3
             ELLIPTIC_ADD(p, r, a, b, m, w4);
             memcpy(r, w4, 3*sizeof(BI32_t));
         }
-        DIVx2(&k);
+        BI32_rshift_bit(&k);
         ELLIPTIC_ADD(p, p, a, b, m, w4);
         memcpy(p, w4, 3*sizeof(BI32_t));
     }
@@ -177,7 +177,7 @@ void ELLIPTIC_MUL(BI32_t* k0, BI32_t p0[3], BI32_t* a, BI32_t* b, BI32_t* m, BI3
 // Limit specifies the amount of work permitted
 void LENSTRA(BI32_t* n0, int limit, BI32_t* out) {
 
-    BI32_t n, g, a, b, w1, w2, w3, w4, w5, w6;
+    BI32_t n, g, a, b, w1, w2, w3, w4, w5, w6, w7,w8;
     ASSIGN(&n, n0);
     ASSIGN(&g, n0);
     FROMINT( &a, 0 );
@@ -198,7 +198,7 @@ void LENSTRA(BI32_t* n0, int limit, BI32_t* out) {
         // Randomized curve coefficient a, computed b
         k_random_range(&n, &a);
         MOD( SUB( MUL( &q[1], &q[1], &w1), ADD( MUL( &q[0], MUL( &q[0], &q[0], &w2 ), &w4 ), MUL( &a, &q[0], &w3 ), &w5), &w6), &n, &b);
-        GCD( ADD( MUL( MULx4( &a, &w1 ), MUL( &a, &a, &w2 ), &w3 ), MULx27( MUL( &b, &b, &w4 ), &w5 ), &w6 ), &n, &g);  // singularity check
+        BI32_gcd(ADD(MUL(MUL(&a, FROMINT(&w7, 4),&w1), MUL(&a, &a, &w2), &w3), MUL(MUL(&b, &b, &w4), FROMINT(&w8, 27), &w5), &w6), &n, &g);  // singularity check
     }
 
     // If we got lucky, return lucky factor
@@ -216,7 +216,7 @@ void LENSTRA(BI32_t* n0, int limit, BI32_t* out) {
         while (COMPARE( &pp, FROMINT( &w1, limit ) ) < 0 ) {
             ELLIPTIC_MUL(&p, q, &a, &b, &n, q);
             if ( COMPARE( &q[2], FROMINT( &w1, 1 ) ) > 0 ) {
-                GCD( &q[2], &n, out );
+                BI32_gcd(&q[2], &n, out);
                 return;
             }
             MUL( &p, &pp, &pp);
@@ -226,37 +226,25 @@ void LENSTRA(BI32_t* n0, int limit, BI32_t* out) {
 }
 
 
-void LENSTRA_TEST(BI32_t *n0, int limit) {
+void LENSTRA_TEST(BI32_t *n0, int limit, int print) {
 
     PRIMES();
-
     BI32_t p, n;
     ASSIGN(&n, n0);
     FROMINT(&p, 1);
-    //printf("p:");PRINTD(&p);
     for (int i=0;i < 5; i++) {
         BI32_t m;
-        printf("n:"); PRINTD(&n);
-        char buf[256];
-        TOSTRING(&n, buf);
-        //if (strcmp(buf, "1009012267184813")==0)
-        //    printf("%ld\n", _seed);
+        if (print) {
+            printf("n:"); PRINTD(&n);
+        }
         LENSTRA(&n, limit, &m);
-        //break;
         if (ISZERO(&m))
             continue;
-        //printf("1n:");PRINTD(n);
-        //printf("1m:");PRINTD(&m);
-        //printf("1p:");PRINTD(&p);
         BI32_t tmp;
         DIV(&n, &m, &tmp);
         ASSIGN(&n, &tmp);
         MUL(&p, &m, &p);
-        //printf("2n:");PRINTD(n);
-        PRINTD(&m);
-        //break;
-        //printf("2p:");PRINTD(&p);
+        if (print)
+            PRINTD(&m);
     }
-
-    //printf("%d\n", ran_count);
 }

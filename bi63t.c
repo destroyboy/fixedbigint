@@ -62,22 +62,24 @@ int BI63_compare(BI63_t *a, BI63_t *b) {
     return 0;
 }
 
-void BI63_lshift_bit(BI63_t *a) {
+BI63_t*  BI63_lshift_bit(BI63_t *a) {
     uint64_t carry=0;
     for (int i=0; i<BI63_SIZE; i++) {
         uint64_t result = carry | (a->__[i]<<1u);
         carry = (a->__[i]>>62u)&1u;
         a->__[i] = result&0x7fffffffffffffffu;
     }
+    return a;
 }
 
-void BI63_rshift_bit(BI63_t *a) {
+BI63_t* BI63_rshift_bit(BI63_t *a) {
     uint64_t carry=0;
     for (int i=BI63_SIZE-1; i>=0; i--) {
         uint64_t result = carry | (a->__[i]>>1u);
         carry = (a->__[i]<<62u)&0x4000000000000000u;
         a->__[i] = result&0x7fffffffffffffffu;
     }
+    return a;
 }
 
 void BI63_add_int(BI63_t *a, uint64_t carry, int shift_left) {
@@ -265,6 +267,7 @@ void BI63_printDecimal(BI63_t *n0) {
     printf("%s\n", buf);
 }
 
+// only used for debugging, might as well use divmod now that works
 void BI63_printHex(BI63_t *a) {
     printf("0x");
     uint64_t carry = 0;
@@ -563,38 +566,25 @@ void BI63_lenstra(BI63_t *n0, int limit, BI63_t *out) {
     BI63_fromInt(out, 0);
 }
 
-void BI63_lenstra_test(BI63_t *n0, int limit) {
+void BI63_lenstra_test(BI63_t *n0, int limit, int print) {
 
     BI63_PRIMES();
-
     BI63_t p, n;
     ASSIGN(&n, n0);
     BI63_fromInt(&p, 1);
-    //printf("p:");PRINTD(&p);
     for (int i=0;i < 5; i++) {
         BI63_t m;
-        printf("n:");
-        BI63_printDecimal(&n);
-        char buf[256];
-        BI63_toString(&n, buf);
-        //if (strcmp(buf, "1009012267184813")==0)
-        //    printf("%ld\n", _seed);
+        if (print) {
+            printf("n:"); BI63_printDecimal(&n);
+        }
         BI63_lenstra(&n, limit, &m);
-        //break;
         if (BI63_isZero(&m))
             continue;
-        //printf("1n:");PRINTD(n);
-        //printf("1m:");PRINTD(&m);
-        //printf("1p:");PRINTD(&p);
         BI63_t tmp;
         BI63_div(&n, &m, &tmp);
         ASSIGN(&n, &tmp);
         BI63_mul(&p, &m, &p);
-        //printf("2n:");PRINTD(n);
-        BI63_printDecimal(&m);
-        //break;
-        //printf("2p:");PRINTD(&p);
+        if (print)
+            BI63_printDecimal(&m);
     }
-
-    //printf("%d\n", ran_count);
 }

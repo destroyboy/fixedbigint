@@ -25,17 +25,21 @@ BI63_t* BI63_negate(BI63_t *in, BI63_t *out);
 void BI63_divmod(BI63_t *m0, BI63_t *n0, BI63_t *q, BI63_t *r);
 BI63_t* BI63_mul(BI63_t *a, BI63_t *b, BI63_t *c);
 
-void BI63_lshift_bit(BI63_t *a);
-void BI63_rshift_bit(BI63_t *a);
+BI63_t* BI63_lshift_bit(BI63_t *a);
+BI63_t* BI63_rshift_bit(BI63_t *a);
 void BI63_add_int(BI63_t *a, uint64_t carry, int shift_left);
 
 void BI63_printRawHex(BI63_t* a);
+
+// this function only works if BI63_SIZE is a multiple of 8, maybe 4 is ok
+// only used for debugging
 void BI63_printHex(BI63_t *a);
+
 void BI63_printDecimal(BI63_t *n0);
 BI63_t* BI63_fromString(BI63_t *n, char *s);
 
 
 void BI63_random_digits(int digits, BI63_t *out);
-void BI63_lenstra_test(BI63_t *n0, int limit);
+void BI63_lenstra_test(BI63_t *n0, int limit, int print);
 
 #endif //BI63T_H

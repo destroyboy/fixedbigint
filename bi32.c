@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-static void I_lshift_bit(BI32_t *a) {
+void BI32_lshift_bit(BI32_t *a) {
     uint32_t carry=0;
     for (int i=0; i<BI32_SIZE; i++) {
         uint32_t result = carry | (a->_[i]<<1);
@@ -17,16 +17,7 @@ static void I_lshift_bit(BI32_t *a) {
     }
 }
 
-static void I_lshift_bits(BI32_t *a, int n) {
-    uint32_t carry=0;
-    for (int i=0; i<BI32_SIZE; i++) {
-        uint32_t result = carry | (a->_[i]<<n);
-        carry = a->_[i]>>(32-n);
-        a->_[i] = result;
-    }
-}
-
-static void I_rshift_bit(BI32_t *a) {
+void BI32_rshift_bit(BI32_t *a) {
     uint32_t carry=0;
     for (int i=BI32_SIZE-1; i>=0; i--) {
         uint32_t result = carry | (a->_[i]>>1);
@@ -146,12 +137,6 @@ int COMPARE_UNSIGNED(BI32_t* a, BI32_t* b) {
     return 0;
 }
 
-void DIVx2(BI32_t *a) {
-    uint32_t sign = a->_[BI32_SIZE-1];
-    I_rshift_bit(a);
-    a->_[BI32_SIZE-1] |= sign;
-}
-
 void DIVMOD0(BI32_t* m0, BI32_t* n0, BI32_t* q, BI32_t* r) {
     //BI32_t shift;
     BI32_t n;
@@ -164,7 +149,7 @@ void DIVMOD0(BI32_t* m0, BI32_t* n0, BI32_t* q, BI32_t* r) {
 
     while (COMPARE_UNSIGNED( r, &n ) > 0) {
         s0++;
-        I_lshift_bit(&n);
+        BI32_lshift_bit(&n);
     }
 
     for (;;) {
@@ -177,7 +162,7 @@ void DIVMOD0(BI32_t* m0, BI32_t* n0, BI32_t* q, BI32_t* r) {
         if (s0==0)
             break;
         s0--;
-        I_rshift_bit(&n);
+        BI32_rshift_bit(&n);
     }
 }
 
@@ -227,37 +212,7 @@ BI32_t* DIV(BI32_t *m0, BI32_t*n0, BI32_t* q) {
     return q;
 }
 
-BI32_t* MULx2(BI32_t *src, BI32_t* dst) {
-    ASSIGN(dst, src);
-    I_lshift_bit(dst);
-    return dst;
-}
-
-BI32_t* MULx4(BI32_t *src, BI32_t* dst) {
-    ASSIGN(dst, src);
-    I_lshift_bits(dst,2);
-    return dst;
-}
-
-BI32_t* MULx3(BI32_t *src, BI32_t*dst) {
-    ASSIGN(dst, src);
-    I_lshift_bit(dst);
-    ADD(dst, src, dst);
-    return dst;
-}
-
-BI32_t* MULx27(BI32_t *src, BI32_t*dst) {
-    ASSIGN(dst, src);
-    I_lshift_bits(dst, 3);
-    ADD(dst, src, dst);
-    BI32_t tmp;
-    ASSIGN(&tmp, dst);
-    I_lshift_bit(dst);
-    ADD(&tmp, dst, dst);
-    return dst;
-}
-
-void GCD(BI32_t* a0, BI32_t* b0, BI32_t* gcd) {
+void BI32_gcd(BI32_t *a0, BI32_t *b0, BI32_t *gcd) {
     BI32_t a, b, r;
     ASSIGN(&a, a0);
     ASSIGN(&b, b0);
@@ -271,7 +226,7 @@ void GCD(BI32_t* a0, BI32_t* b0, BI32_t* gcd) {
 
 
 
-void TOSTRING(BI32_t *n0, char *s) {
+void BI32_toString(BI32_t *n0, char *s) {
     BI32_t n, ten;
     ASSIGN(&n, n0);
     FROMINT(&ten, 10);
@@ -335,12 +290,12 @@ void PRINTHEX(BI32_t* a) {
 
 void PRINTD(BI32_t *n0) {
     char buf[256];
-    TOSTRING(n0, buf);
+    BI32_toString(n0, buf);
     printf("%s\n", buf);
 }
 
 void PRINTD_(BI32_t *n0) {
     char buf[256];
-    TOSTRING(n0, buf);
+    BI32_toString(n0, buf);
     printf("%s", buf);
 }

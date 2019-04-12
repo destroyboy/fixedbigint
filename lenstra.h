@@ -11,7 +11,7 @@
 
 void PRIMES();
 void LENSTRA(BI32_t* n, int limit, BI32_t* out);
-void LENSTRA_TEST(BI32_t *n, int limit);
+void LENSTRA_TEST(BI32_t *n, int limit, int print);
 void ELLIPTIC_ADD(BI32_t p[3], BI32_t q[3], BI32_t* a, BI32_t* b, BI32_t* m, BI32_t out[3]);
 
 void k_random_digits(int digits, BI32_t* out);
