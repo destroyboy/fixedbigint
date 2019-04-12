@@ -2,46 +2,50 @@
 // Created by Alexis Farmer on 2019-04-08.
 //
 
-#include "bigint.h"
+#include "bi32.h"
 
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 
-static void I_lshift_bit(I *a) {
+static void I_lshift_bit(BI32_t *a) {
     uint32_t carry=0;
-    for (int i=0; i<BIGINT_WORDS; i++) {
+    for (int i=0; i<BI32_SIZE; i++) {
         uint32_t result = carry | (a->_[i]<<1);
         carry = a->_[i]>>31;
         a->_[i] = result;
     }
 }
 
-static void I_lshift_bits(I *a, int n) {
+static void I_lshift_bits(BI32_t *a, int n) {
     uint32_t carry=0;
-    for (int i=0; i<BIGINT_WORDS; i++) {
+    for (int i=0; i<BI32_SIZE; i++) {
         uint32_t result = carry | (a->_[i]<<n);
         carry = a->_[i]>>(32-n);
         a->_[i] = result;
     }
 }
 
-static void I_rshift_bit(I *a) {
+static void I_rshift_bit(BI32_t *a) {
     uint32_t carry=0;
-    for (int i=BIGINT_WORDS-1; i>=0; i--) {
+    for (int i=BI32_SIZE-1; i>=0; i--) {
         uint32_t result = carry | (a->_[i]>>1);
         carry = a->_[i]<<31;
         a->_[i] = result;
     }
 }
 
-int ISNEGATIVE(I* a) {
-    return (a->_[BIGINT_WORDS-1]>>31);
+int ISNEGATIVE(BI32_t* a) {
+    return (a->_[BI32_SIZE-1]>>31);
 }
 
-I* ADD(I *a, I *b, I *c) {
+int ISPOSITIVE(BI32_t* a) {
+    return !(a->_[BI32_SIZE-1]>>31);
+}
+
+BI32_t* ADD(BI32_t *a, BI32_t *b, BI32_t *c) {
     uint64_t carry = 0;
-    for (int i=0; i<BIGINT_WORDS; i++) {
+    for (int i=0; i<BI32_SIZE; i++) {
         carry += (uint64_t)a->_[i] + (uint64_t)b->_[i];
         c->_[i] = carry;
         carry >>= 32u;
@@ -49,8 +53,8 @@ I* ADD(I *a, I *b, I *c) {
     return c;
 }
 
-void ADD_INT(I *a, uint64_t carry, int shift_left) {
-    for (int i=shift_left; i<BIGINT_WORDS; i++) {
+void ADD_INT(BI32_t *a, uint64_t carry, int shift_left) {
+    for (int i=shift_left; i<BI32_SIZE; i++) {
         carry += (uint64_t)a->_[i];
         a->_[i] = carry;
         carry >>= 32u;
@@ -59,9 +63,9 @@ void ADD_INT(I *a, uint64_t carry, int shift_left) {
     }
 }
 
-I* SUB(I *a, I *b, I *c) {
+BI32_t* SUB(BI32_t *a, BI32_t *b, BI32_t *c) {
     uint64_t carry = 1;
-    for (int i=0; i<BIGINT_WORDS; i++) {
+    for (int i=0; i<BI32_SIZE; i++) {
         carry += (uint64_t)a->_[i] + (uint64_t)~b->_[i];
         c->_[i] = carry;
         carry >>= 32u;
@@ -69,42 +73,42 @@ I* SUB(I *a, I *b, I *c) {
     return c;
 }
 
-I* FROMINT(I *a, int64_t n) {
+BI32_t* FROMINT(BI32_t *a, int64_t n) {
     memset(a, 0, sizeof(*a));
     a->_[0] = n;
     a->_[1] = n>>32;
     if (n<0)
-        for (int i=2; i<BIGINT_WORDS; i++)
+        for (int i=2; i<BI32_SIZE; i++)
             a->_[i] = -1;
     return a;
 }
 
-void NEGATE_INPLACE(I *n) {
-    I one;
+void NEGATE_INPLACE(BI32_t *n) {
+    BI32_t one;
     FROMINT(&one, 1);
-    for (int i=0; i<BIGINT_WORDS; i++)
+    for (int i=0; i<BI32_SIZE; i++)
         n->_[i] = ~n->_[i];
     ADD(n, &one, n);
 }
 
-I* NEGATE(I *n0, I* out) {
-    I n;
+BI32_t* NEGATE(BI32_t *n0, BI32_t* out) {
+    BI32_t n;
     ASSIGN(&n, n0);
     FROMINT(out, 1);
-    for (int i=0; i<BIGINT_WORDS; i++)
+    for (int i=0; i<BI32_SIZE; i++)
         n._[i] = ~n._[i];
     ADD(&n, out, out);
     return out;
 }
 
-I* MUL(I *a, I *b, I *c) {
-    I r;
+BI32_t* MUL(BI32_t *a, BI32_t *b, BI32_t *c) {
+    BI32_t r;
     FROMINT(&r, 0);
-    for (int i = 0; i < BIGINT_WORDS; ++i) {
+    for (int i = 0; i < BI32_SIZE; ++i) {
         uint64_t bb = (uint64_t )b->_[i];
         if (bb==0)
             continue;
-        for (int j = 0; j < BIGINT_WORDS-i; ++j) {
+        for (int j = 0; j < BI32_SIZE-i; ++j) {
             uint64_t aa = (uint64_t )a->_[j];
             if (aa==0)
                 continue;
@@ -116,21 +120,21 @@ I* MUL(I *a, I *b, I *c) {
 }
 
 
-int ISZERO(I* a) {
-    for (int i=0; i<BIGINT_WORDS; i++)
+int ISZERO(BI32_t* a) {
+    for (int i=0; i<BI32_SIZE; i++)
         if (a->_[i]!=0)
             return 0;
     return 1;
 }
 
-int COMPARE(I* a, I* b) {
-    I c;
+int COMPARE(BI32_t* a, BI32_t* b) {
+    BI32_t c;
     SUB(a, b, &c);
     return ISNEGATIVE(&c) ? -1 : (ISZERO(&c)?0:1);
 }
 
-int COMPARE_UNSIGNED(I* a, I* b) {
-    for (int i = BIGINT_WORDS-1; i>=0; i--) {
+int COMPARE_UNSIGNED(BI32_t* a, BI32_t* b) {
+    for (int i = BI32_SIZE-1; i>=0; i--) {
         int64_t c = (uint64_t )a->_[i] - (uint64_t )b->_[i];
         if (c==0)
             continue;
@@ -142,19 +146,19 @@ int COMPARE_UNSIGNED(I* a, I* b) {
     return 0;
 }
 
-void DIVx2(I *a) {
-    uint32_t sign = a->_[BIGINT_WORDS-1];
+void DIVx2(BI32_t *a) {
+    uint32_t sign = a->_[BI32_SIZE-1];
     I_rshift_bit(a);
-    a->_[BIGINT_WORDS-1] |= sign;
+    a->_[BI32_SIZE-1] |= sign;
 }
 
-void DIVMOD0(I* m0, I* n0, I* q, I* r) {
-    //I shift;
-    I n;
+void DIVMOD0(BI32_t* m0, BI32_t* n0, BI32_t* q, BI32_t* r) {
+    //BI32_t shift;
+    BI32_t n;
 
-    uint32_t s0 = 0;
+    int32_t s0 = 0;
 
-    memset(q, 0, sizeof(I));
+    memset(q, 0, sizeof(BI32_t));
     ASSIGN(r, m0);
     ASSIGN(&n, n0);
 
@@ -164,8 +168,10 @@ void DIVMOD0(I* m0, I* n0, I* q, I* r) {
     }
 
     for (;;) {
-        if (COMPARE_UNSIGNED(&n, r)<=0) {
-            SUB(r, &n, r);
+        BI32_t t;
+        SUB(r, &n, &t);
+        if (ISPOSITIVE(&t)) {
+            ASSIGN(r, &t);
             ADD_INT(q, 1u<<(s0&31u), s0>>5u);
         }
         if (s0==0)
@@ -175,15 +181,15 @@ void DIVMOD0(I* m0, I* n0, I* q, I* r) {
     }
 }
 
-I* MOD0(I* m, I *n, I *r) {
-    I q;
+BI32_t* MOD0(BI32_t* m, BI32_t *n, BI32_t *r) {
+    BI32_t q;
     DIVMOD0(m, n, &q, r);
     return r;
 }
 
-I* MOD(I* m, I *n, I *r) {
+BI32_t* MOD(BI32_t* m, BI32_t *n, BI32_t *r) {
 
-    I w1, w2, w3;
+    BI32_t w1, w2, w3;
 
     if (!ISNEGATIVE(m) && !ISNEGATIVE(n))
         return MOD0(m, n, r);
@@ -198,9 +204,9 @@ I* MOD(I* m, I *n, I *r) {
     return NEGATE( MOD0( NEGATE(m, &w1), NEGATE(n, &w2), &w3), r);
 }
 
-I* DIV(I *m0, I*n0, I* q) {
+BI32_t* DIV(BI32_t *m0, BI32_t*n0, BI32_t* q) {
 
-    I m, n, w1, w2, r;
+    BI32_t m, n, w1, w2, r;
     ASSIGN(&m, m0);
     ASSIGN(&n, n0);
 
@@ -221,38 +227,38 @@ I* DIV(I *m0, I*n0, I* q) {
     return q;
 }
 
-I* MULx2(I *src, I* dst) {
+BI32_t* MULx2(BI32_t *src, BI32_t* dst) {
     ASSIGN(dst, src);
     I_lshift_bit(dst);
     return dst;
 }
 
-I* MULx4(I *src, I* dst) {
+BI32_t* MULx4(BI32_t *src, BI32_t* dst) {
     ASSIGN(dst, src);
     I_lshift_bits(dst,2);
     return dst;
 }
 
-I* MULx3(I *src, I*dst) {
+BI32_t* MULx3(BI32_t *src, BI32_t*dst) {
     ASSIGN(dst, src);
     I_lshift_bit(dst);
     ADD(dst, src, dst);
     return dst;
 }
 
-I* MULx27(I *src, I*dst) {
+BI32_t* MULx27(BI32_t *src, BI32_t*dst) {
     ASSIGN(dst, src);
     I_lshift_bits(dst, 3);
     ADD(dst, src, dst);
-    I tmp;
+    BI32_t tmp;
     ASSIGN(&tmp, dst);
     I_lshift_bit(dst);
     ADD(&tmp, dst, dst);
     return dst;
 }
 
-void GCD(I* a0, I* b0, I* gcd) {
-    I a, b, r;
+void GCD(BI32_t* a0, BI32_t* b0, BI32_t* gcd) {
+    BI32_t a, b, r;
     ASSIGN(&a, a0);
     ASSIGN(&b, b0);
     while (!ISZERO(&b)) {
@@ -265,8 +271,8 @@ void GCD(I* a0, I* b0, I* gcd) {
 
 
 
-void TOSTRING(I *n0, char *s) {
-    I n, ten;
+void TOSTRING(BI32_t *n0, char *s) {
+    BI32_t n, ten;
     ASSIGN(&n, n0);
     FROMINT(&ten, 10);
     char buf[256], *ptr = &buf[255];
@@ -282,7 +288,7 @@ void TOSTRING(I *n0, char *s) {
         NEGATE_INPLACE(&n);
 
     while (!ISZERO(&n)) {
-        I q, r;
+        BI32_t q, r;
         DIVMOD0(&n, &ten, &q, &r);
         *--ptr = '0'+r._[0];
         ASSIGN(&n, &q);
@@ -293,9 +299,9 @@ void TOSTRING(I *n0, char *s) {
     strcpy(s, ptr);
 }
 
-I* FROMSTRING(I *n, char *s) {
+BI32_t* FROMSTRING(BI32_t *n, char *s) {
     FROMINT(n, 0);
-    I digit, ten, result;
+    BI32_t digit, ten, result;
     FROMINT(&digit, 0);
     FROMINT(&ten, 10);
     FROMINT(&result, 0);
@@ -307,7 +313,7 @@ I* FROMSTRING(I *n, char *s) {
     }
 
     while (*s!='\0') {
-        I temp;
+        BI32_t temp;
         digit._[0] = *s++ -'0';
         //PRINT(&digit);
         MUL(&result, &ten, &temp);
@@ -319,21 +325,21 @@ I* FROMSTRING(I *n, char *s) {
     return n;
 }
 
-void PRINTHEX(I* a) {
+void PRINTHEX(BI32_t* a) {
     printf("0x");
-    for (int i=BIGINT_WORDS-1; i>=0; i--) {
+    for (int i=BI32_SIZE-1; i>=0; i--) {
         printf("%08X", a->_[i]);
     }
     printf("\n");
 }
 
-void PRINTD(I *n0) {
+void PRINTD(BI32_t *n0) {
     char buf[256];
     TOSTRING(n0, buf);
     printf("%s\n", buf);
 }
 
-void PRINTD_(I *n0) {
+void PRINTD_(BI32_t *n0) {
     char buf[256];
     TOSTRING(n0, buf);
     printf("%s", buf);

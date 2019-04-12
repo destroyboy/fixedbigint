@@ -5,15 +5,15 @@
 #ifndef UNTITLED_LENSTRA_H
 #define UNTITLED_LENSTRA_H
 
-#include "bigint.h"
+#include "bi32.h"
 
 #define PRIMEMAX (1000)
 
 void PRIMES();
-void LENSTRA(I* n, int limit, I* out);
-void LENSTRA_TEST(I *n, int limit);
-void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]);
+void LENSTRA(BI32_t* n, int limit, BI32_t* out);
+void LENSTRA_TEST(BI32_t *n, int limit);
+void ELLIPTIC_ADD(BI32_t p[3], BI32_t q[3], BI32_t* a, BI32_t* b, BI32_t* m, BI32_t out[3]);
 
-void k_random_digits(int digits, I* out);
+void k_random_digits(int digits, BI32_t* out);
 
 #endif //UNTITLED_LENSTRA_H

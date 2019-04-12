@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-#include "bigint.h"
+#include "bi32.h"
 #include "lenstra.h"
 
-#include "varint.h"
+#include "bi63t.h"
 
 void testdiv(uint64_t N, uint64_t D, uint64_t *Q, uint64_t *R) {
     *R = N;
@@ -27,7 +27,7 @@ extern long _seed;
 
 void test1() {
 
-    I c;
+    BI32_t c;
     for (int i=0; i<500; i++) {
         //printf("X:%d\n", i);
         k_random_digits(20, &c);
@@ -40,42 +40,43 @@ void test1() {
 
 void test1v() {
 
-    V c;
+    BI63_t c;
     for (int i=0; i<500; i++) {
         //printf("X:%d\n", i);
-        v_random_digits(20, &c);
+        BI63_random_digits(20, &c);
         //FROMSTRING(&c, "1009012267184813");
         //_seed = 3410633414;
-        printf("%d ", i); V_PRINTD(&c);
-        V_LENSTRA_TEST(&c, 500);
+        printf("%d ", i);
+        BI63_printDecimal(&c);
+        BI63_lenstra_test(&c, 500);
     }
 }
 
 void test2() {
-    V a, b, c, a3, b3, c3, result;
-    V_fromInt(&a, 8866128975287528);
-    V_fromInt(&b, 8778405442862239);
-    V_fromInt(&c, 2736111468807040);
-    V_MUL(&a, &a, &a3);
-    V_MUL(&a, &a3, &a3);
-    V_MUL(&b, &b, &b3);
-    V_MUL(&b, &b3, &b3);
-    V_MUL(&c, &c, &c3);
-    V_MUL(&c, &c3, &c3);
+    BI63_t a, b, c, a3, b3, c3, result;
+    BI63_fromInt(&a, 8866128975287528);
+    BI63_fromInt(&b, 8778405442862239);
+    BI63_fromInt(&c, 2736111468807040);
+    BI63_mul(&a, &a, &a3);
+    BI63_mul(&a, &a3, &a3);
+    BI63_mul(&b, &b, &b3);
+    BI63_mul(&b, &b3, &b3);
+    BI63_mul(&c, &c, &c3);
+    BI63_mul(&c, &c3, &c3);
     /*V_PRINTD(&a);
     V_PRINTD(&b);
     V_PRINTD(&c);
     V_PRINTD(&a3);
     V_PRINTD(&b3);
-    V_PRINTD(&c3);*/
-    V_add(&a3, &b3, &result);
-    V_add(&result, &c3, &result);
-    V_PRINTD(&result);
+    BI63_printDecimal(&c3);*/
+    BI63_add(&a3, &b3, &result);
+    BI63_add(&result, &c3, &result);
+    BI63_printDecimal(&result);
 
 }
 
 void test3() {
-    I a, b, c, a3, b3, c3, result;
+    BI32_t a, b, c, a3, b3, c3, result;
     FROMINT(&a, 8866128975287528);
     FROMINT(&b, 8778405442862239);
     FROMINT(&c, 2736111468807040);
@@ -90,7 +91,7 @@ void test3() {
     V_PRINTD(&c);
     V_PRINTD(&a3);
     V_PRINTD(&b3);
-    V_PRINTD(&c3);*/
+    BI63_printDecimal(&c3);*/
     ADD(&a3, &b3, &result);
     ADD(&result, &c3, &result);
     PRINTD(&result);
@@ -99,27 +100,37 @@ void test3() {
 
 
 void test5() {
-    V a,b,c;
-    V_fromInt(&a, 8866128975287528);
-    V_fromInt(&b, 8866128975287528);
-    V_MUL(&a, &b, &c);
-    V_PRINTD(&a);
-    V_PRINTD(&b);
-    V_PRINTD(&c);
+    BI63_t a,b,c;
+    BI63_fromInt(&a, 8866128975287528);
+    BI63_fromInt(&b, 8866128975287528);
+    BI63_mul(&a, &b, &c);
+    BI63_printDecimal(&a);
+    BI63_printDecimal(&b);
+    BI63_printDecimal(&c);
 
 
 }
+
+void test6() {
+    BI63_t a,b,c, d;
+    BI63_fromString(&a, "100000000000000000000000000000000000000000000000");
+    BI63_fromInt(&b, 7);
+    BI63_divmod(&a, &b, &c, &d);
+    //BI63_printDecimal(&a);
+    //BI63_printDecimal(&b);
+    BI63_printDecimal(&c);
+}
+
+extern uint64_t shifts;
+extern uint64_t divs;
 
 int main() {
 
     struct timeval stop, start;
     gettimeofday(&start, NULL);
-    test1v();
+    //test6();
+    test1();
     //test2();
-
-    //printf("count=%llu\n", count);
-    //for (int i=0; i <1; i++)
-    //    test2();
 
     gettimeofday(&stop, NULL);
     printf("took %lu\n", stop.tv_sec - start.tv_sec);

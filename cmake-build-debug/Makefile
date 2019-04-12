@@ -123,32 +123,59 @@ fixedbigint/fast:
 	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/build
 .PHONY : fixedbigint/fast
 
-bigint.o: bigint.c.o
+bi32.o: bi32.c.o
 
-.PHONY : bigint.o
+.PHONY : bi32.o
 
 # target to build an object file
-bigint.c.o:
-	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bigint.c.o
-.PHONY : bigint.c.o
+bi32.c.o:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bi32.c.o
+.PHONY : bi32.c.o
 
-bigint.i: bigint.c.i
+bi32.i: bi32.c.i
 
-.PHONY : bigint.i
+.PHONY : bi32.i
 
 # target to preprocess a source file
-bigint.c.i:
-	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bigint.c.i
-.PHONY : bigint.c.i
+bi32.c.i:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bi32.c.i
+.PHONY : bi32.c.i
 
-bigint.s: bigint.c.s
+bi32.s: bi32.c.s
 
-.PHONY : bigint.s
+.PHONY : bi32.s
 
 # target to generate assembly for a file
-bigint.c.s:
-	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bigint.c.s
-.PHONY : bigint.c.s
+bi32.c.s:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bi32.c.s
+.PHONY : bi32.c.s
+
+bi63t.o: bi63t.c.o
+
+.PHONY : bi63t.o
+
+# target to build an object file
+bi63t.c.o:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bi63t.c.o
+.PHONY : bi63t.c.o
+
+bi63t.i: bi63t.c.i
+
+.PHONY : bi63t.i
+
+# target to preprocess a source file
+bi63t.c.i:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bi63t.c.i
+.PHONY : bi63t.c.i
+
+bi63t.s: bi63t.c.s
+
+.PHONY : bi63t.s
+
+# target to generate assembly for a file
+bi63t.c.s:
+	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/bi63t.c.s
+.PHONY : bi63t.c.s
 
 lenstra.o: lenstra.c.o
 
@@ -204,33 +231,6 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/main.c.s
 .PHONY : main.c.s
 
-varint.o: varint.c.o
-
-.PHONY : varint.o
-
-# target to build an object file
-varint.c.o:
-	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/varint.c.o
-.PHONY : varint.c.o
-
-varint.i: varint.c.i
-
-.PHONY : varint.i
-
-# target to preprocess a source file
-varint.c.i:
-	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/varint.c.i
-.PHONY : varint.c.i
-
-varint.s: varint.c.s
-
-.PHONY : varint.s
-
-# target to generate assembly for a file
-varint.c.s:
-	$(MAKE) -f CMakeFiles/fixedbigint.dir/build.make CMakeFiles/fixedbigint.dir/varint.c.s
-.PHONY : varint.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -240,18 +240,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... fixedbigint"
-	@echo "... bigint.o"
-	@echo "... bigint.i"
-	@echo "... bigint.s"
+	@echo "... bi32.o"
+	@echo "... bi32.i"
+	@echo "... bi32.s"
+	@echo "... bi63t.o"
+	@echo "... bi63t.i"
+	@echo "... bi63t.s"
 	@echo "... lenstra.o"
 	@echo "... lenstra.i"
 	@echo "... lenstra.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... varint.o"
-	@echo "... varint.i"
-	@echo "... varint.s"
 .PHONY : help
 
 

@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/cc  -Wall -O2 -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/fixedbigint.dir/main.c.o CMakeFiles/fixedbigint.dir/bigint.c.o CMakeFiles/fixedbigint.dir/lenstra.c.o CMakeFiles/fixedbigint.dir/varint.c.o  -o fixedbigint 
+/Library/Developer/CommandLineTools/usr/bin/cc  -Wall -O2 -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/fixedbigint.dir/main.c.o CMakeFiles/fixedbigint.dir/bi32.c.o CMakeFiles/fixedbigint.dir/lenstra.c.o CMakeFiles/fixedbigint.dir/bi63t.c.o  -o fixedbigint 

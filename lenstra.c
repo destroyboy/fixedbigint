@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "lenstra.h"
-#include "bigint.h"
+#include "bi32.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -22,7 +22,7 @@ long _rand()
     return _seed;
 }
 
-void k_random_digits(int digits, I* out) {
+void k_random_digits(int digits, BI32_t* out) {
     char n[256];
     for (int i=0; i<digits; i++)
         n[i] = '0'+(int)(_rand()%10);
@@ -33,9 +33,9 @@ void k_random_digits(int digits, I* out) {
 
 
 
-void k_random_range(I* n, I* out) {
+void k_random_range(BI32_t* n, BI32_t* out) {
     char buf[256];
-    I m;
+    BI32_t m;
     //printf("in range:");
     //PRINTD(n);
     TOSTRING(n, buf);
@@ -65,7 +65,7 @@ void PRIMES() {
 
 // Finds modular inverse
 // Returns inverse, unused helper and gcd
-void MODULAR_INV(I* a, I* b, I out[3]) {
+void MODULAR_INV(BI32_t* a, BI32_t* b, BI32_t out[3]) {
 
     if (ISZERO(b)) {
         FROMINT(&out[0], 1);
@@ -74,13 +74,13 @@ void MODULAR_INV(I* a, I* b, I out[3]) {
         return;
     }
 
-    I q,r;
+    BI32_t q,r;
 
     DIVMOD0( a, b, &q, &r);
     // String q=t[0], r=t[1];
     const int X=0, Y=1, G=2;
     // String[] xyg = modular_inv(b, r, t);
-    I xyg[3];
+    BI32_t xyg[3];
     MODULAR_INV(b, &r, xyg);
     ASSIGN(&out[0], &xyg[Y]);
     SUB(&xyg[X], MUL(&q, &xyg[Y], &out[1]), &out[1]);
@@ -88,20 +88,20 @@ void MODULAR_INV(I* a, I* b, I out[3]) {
 }
 
 // Addition in Elliptic curve modulo m space
-void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]) {
+void ELLIPTIC_ADD(BI32_t p[3], BI32_t q[3], BI32_t* a, BI32_t* b, BI32_t* m, BI32_t out[3]) {
 
     // If one point is infinity, return other one
     if (ISZERO(&p[2])) {
-        memcpy(out, q, 3*sizeof(I));
+        memcpy(out, q, 3*sizeof(BI32_t));
         return;
     }
 
     if (ISZERO(&q[2])) {
-        memcpy(out, p, 3*sizeof(I));
+        memcpy(out, p, 3*sizeof(BI32_t));
         return;
     }
 
-    I num, denom, w1, w2, w3;
+    BI32_t num, denom, w1, w2, w3;
 
     if ( COMPARE_UNSIGNED( &p[0], &q[0] ) == 0 ) {
         if ( ISZERO( MOD( ADD(&p[1], &q[1], &w1 ), m, &w2 ) ) ) {
@@ -118,7 +118,7 @@ void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]) {
         MOD(SUB(&q[0], &p[0], &w1), m, &denom );
     }
 
-    I inv_g[3];
+    BI32_t inv_g[3];
 
     MODULAR_INV(&denom, m, inv_g);
     const int INV = 0;
@@ -132,9 +132,9 @@ void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]) {
         return;
     }
 
-    I num_times_inv;
+    BI32_t num_times_inv;
     MUL(&num, &inv_g[INV], &num_times_inv);
-    I z;
+    BI32_t z;
 
     MOD(SUB(MUL(&num_times_inv, &num_times_inv, &w1), ADD(&p[0], &q[0], &w2), &w3), m, &z );
 
@@ -144,12 +144,12 @@ void ELLIPTIC_ADD(I p[3], I q[3], I* a, I* b, I* m, I out[3]) {
 }
 
 // Multiplication (repeated addition and doubling)
-void ELLIPTIC_MUL(I* k0, I p0[3], I* a, I* b, I* m, I out[3])
+void ELLIPTIC_MUL(BI32_t* k0, BI32_t p0[3], BI32_t* a, BI32_t* b, BI32_t* m, BI32_t out[3])
 {
-    I r[3], p[3], w1, w2, w3, k, w4[3];
+    BI32_t r[3], p[3], w1, w2, w3, k, w4[3];
 
     ASSIGN(&k, k0);
-    memcpy(p, p0, 3*sizeof(I));
+    memcpy(p, p0, 3*sizeof(BI32_t));
     FROMINT(&r[0], 0);
     FROMINT(&r[1], 1);
     FROMINT(&r[2], 0);
@@ -157,32 +157,32 @@ void ELLIPTIC_MUL(I* k0, I p0[3], I* a, I* b, I* m, I out[3])
     while ( !ISZERO( &k ) ){
         // p is failure, return it
         if ( COMPARE(&p[2],FROMINT(&w1, 1)) > 0 ) {
-            memcpy(out, p, 3*sizeof(I));
+            memcpy(out, p, 3*sizeof(BI32_t));
             return;
         }
 
         if ( COMPARE_UNSIGNED( MOD( &k, FROMINT( &w1, 2 ), &w3), FROMINT(&w2, 1))==0) {
             ELLIPTIC_ADD(p, r, a, b, m, w4);
-            memcpy(r, w4, 3*sizeof(I));
+            memcpy(r, w4, 3*sizeof(BI32_t));
         }
         DIVx2(&k);
         ELLIPTIC_ADD(p, p, a, b, m, w4);
-        memcpy(p, w4, 3*sizeof(I));
+        memcpy(p, w4, 3*sizeof(BI32_t));
     }
 
-    memcpy(out, r, 3*sizeof(I));
+    memcpy(out, r, 3*sizeof(BI32_t));
 }
 
 // Lenstra's algorithm for factoring
 // Limit specifies the amount of work permitted
-void LENSTRA(I* n0, int limit, I* out) {
+void LENSTRA(BI32_t* n0, int limit, BI32_t* out) {
 
-    I n, g, a, b, w1, w2, w3, w4, w5, w6;
+    BI32_t n, g, a, b, w1, w2, w3, w4, w5, w6;
     ASSIGN(&n, n0);
     ASSIGN(&g, n0);
     FROMINT( &a, 0 );
     FROMINT( &b, 0 );
-    I q[3];
+    BI32_t q[3];
     FROMINT( &q[0], 0 );
     FROMINT( &q[1], 1 );
     FROMINT( &q[2], 0 );
@@ -209,7 +209,7 @@ void LENSTRA(I* n0, int limit, I* out) {
 
     // increase k step by step until lcm(1, ..., limit)
     for (int i = 0; i < primeCount; i++) {
-        I p, pp;
+        BI32_t p, pp;
         FROMINT( &p, primes[i] );
         ASSIGN( &pp, &p );
 
@@ -226,16 +226,16 @@ void LENSTRA(I* n0, int limit, I* out) {
 }
 
 
-void LENSTRA_TEST(I *n0, int limit) {
+void LENSTRA_TEST(BI32_t *n0, int limit) {
 
     PRIMES();
 
-    I p, n;
+    BI32_t p, n;
     ASSIGN(&n, n0);
     FROMINT(&p, 1);
     //printf("p:");PRINTD(&p);
     for (int i=0;i < 5; i++) {
-        I m;
+        BI32_t m;
         printf("n:"); PRINTD(&n);
         char buf[256];
         TOSTRING(&n, buf);
@@ -248,7 +248,7 @@ void LENSTRA_TEST(I *n0, int limit) {
         //printf("1n:");PRINTD(n);
         //printf("1m:");PRINTD(&m);
         //printf("1p:");PRINTD(&p);
-        I tmp;
+        BI32_t tmp;
         DIV(&n, &m, &tmp);
         ASSIGN(&n, &tmp);
         MUL(&p, &m, &p);

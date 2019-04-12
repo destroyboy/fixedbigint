@@ -70,18 +70,18 @@ CMakeFiles/fixedbigint.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fixedbigint.dir/main.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexis/CLionProjects/fixedbigint/main.c -o CMakeFiles/fixedbigint.dir/main.c.s
 
-CMakeFiles/fixedbigint.dir/bigint.c.o: CMakeFiles/fixedbigint.dir/flags.make
-CMakeFiles/fixedbigint.dir/bigint.c.o: ../bigint.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/fixedbigint.dir/bigint.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/fixedbigint.dir/bigint.c.o   -c /Users/alexis/CLionProjects/fixedbigint/bigint.c
+CMakeFiles/fixedbigint.dir/bi32.c.o: CMakeFiles/fixedbigint.dir/flags.make
+CMakeFiles/fixedbigint.dir/bi32.c.o: ../bi32.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/fixedbigint.dir/bi32.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/fixedbigint.dir/bi32.c.o   -c /Users/alexis/CLionProjects/fixedbigint/bi32.c
 
-CMakeFiles/fixedbigint.dir/bigint.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fixedbigint.dir/bigint.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexis/CLionProjects/fixedbigint/bigint.c > CMakeFiles/fixedbigint.dir/bigint.c.i
+CMakeFiles/fixedbigint.dir/bi32.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fixedbigint.dir/bi32.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexis/CLionProjects/fixedbigint/bi32.c > CMakeFiles/fixedbigint.dir/bi32.c.i
 
-CMakeFiles/fixedbigint.dir/bigint.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fixedbigint.dir/bigint.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexis/CLionProjects/fixedbigint/bigint.c -o CMakeFiles/fixedbigint.dir/bigint.c.s
+CMakeFiles/fixedbigint.dir/bi32.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fixedbigint.dir/bi32.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexis/CLionProjects/fixedbigint/bi32.c -o CMakeFiles/fixedbigint.dir/bi32.c.s
 
 CMakeFiles/fixedbigint.dir/lenstra.c.o: CMakeFiles/fixedbigint.dir/flags.make
 CMakeFiles/fixedbigint.dir/lenstra.c.o: ../lenstra.c
@@ -96,33 +96,33 @@ CMakeFiles/fixedbigint.dir/lenstra.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fixedbigint.dir/lenstra.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexis/CLionProjects/fixedbigint/lenstra.c -o CMakeFiles/fixedbigint.dir/lenstra.c.s
 
-CMakeFiles/fixedbigint.dir/varint.c.o: CMakeFiles/fixedbigint.dir/flags.make
-CMakeFiles/fixedbigint.dir/varint.c.o: ../varint.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/fixedbigint.dir/varint.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/fixedbigint.dir/varint.c.o   -c /Users/alexis/CLionProjects/fixedbigint/varint.c
+CMakeFiles/fixedbigint.dir/bi63t.c.o: CMakeFiles/fixedbigint.dir/flags.make
+CMakeFiles/fixedbigint.dir/bi63t.c.o: ../bi63t.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/fixedbigint.dir/bi63t.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/fixedbigint.dir/bi63t.c.o   -c /Users/alexis/CLionProjects/fixedbigint/bi63t.c
 
-CMakeFiles/fixedbigint.dir/varint.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fixedbigint.dir/varint.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexis/CLionProjects/fixedbigint/varint.c > CMakeFiles/fixedbigint.dir/varint.c.i
+CMakeFiles/fixedbigint.dir/bi63t.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fixedbigint.dir/bi63t.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexis/CLionProjects/fixedbigint/bi63t.c > CMakeFiles/fixedbigint.dir/bi63t.c.i
 
-CMakeFiles/fixedbigint.dir/varint.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fixedbigint.dir/varint.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexis/CLionProjects/fixedbigint/varint.c -o CMakeFiles/fixedbigint.dir/varint.c.s
+CMakeFiles/fixedbigint.dir/bi63t.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fixedbigint.dir/bi63t.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexis/CLionProjects/fixedbigint/bi63t.c -o CMakeFiles/fixedbigint.dir/bi63t.c.s
 
 # Object files for target fixedbigint
 fixedbigint_OBJECTS = \
 "CMakeFiles/fixedbigint.dir/main.c.o" \
-"CMakeFiles/fixedbigint.dir/bigint.c.o" \
+"CMakeFiles/fixedbigint.dir/bi32.c.o" \
 "CMakeFiles/fixedbigint.dir/lenstra.c.o" \
-"CMakeFiles/fixedbigint.dir/varint.c.o"
+"CMakeFiles/fixedbigint.dir/bi63t.c.o"
 
 # External object files for target fixedbigint
 fixedbigint_EXTERNAL_OBJECTS =
 
 fixedbigint: CMakeFiles/fixedbigint.dir/main.c.o
-fixedbigint: CMakeFiles/fixedbigint.dir/bigint.c.o
+fixedbigint: CMakeFiles/fixedbigint.dir/bi32.c.o
 fixedbigint: CMakeFiles/fixedbigint.dir/lenstra.c.o
-fixedbigint: CMakeFiles/fixedbigint.dir/varint.c.o
+fixedbigint: CMakeFiles/fixedbigint.dir/bi63t.c.o
 fixedbigint: CMakeFiles/fixedbigint.dir/build.make
 fixedbigint: CMakeFiles/fixedbigint.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/alexis/CLionProjects/fixedbigint/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable fixedbigint"

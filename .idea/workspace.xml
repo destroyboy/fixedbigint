@@ -12,27 +12,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc3e915b-29f8-468b-bf73-117738204e9a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/varint.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/varint.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bi63t.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigint.c" beforeDir="false" afterPath="$PROJECT_DIR$/bigint.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigint.h" beforeDir="false" afterPath="$PROJECT_DIR$/bigint.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigint.c" beforeDir="false" afterPath="$PROJECT_DIR$/bi32.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigint.h" beforeDir="false" afterPath="$PROJECT_DIR$/bi32.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/C.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/bigint.c.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/lenstra.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/varint.c.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/fixedbigint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/fixedbigint" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/fixedbigint" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/fixedbigint.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/fixedbigint.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lenstra.c" beforeDir="false" afterPath="$PROJECT_DIR$/lenstra.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lenstra.h" beforeDir="false" afterPath="$PROJECT_DIR$/lenstra.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varint.c" beforeDir="false" afterPath="$PROJECT_DIR$/bi63t.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/varint.h" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+            <state relative-caret-position="482">
+              <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -69,43 +72,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bigint.c">
+        <entry file="file://$PROJECT_DIR$/bi32.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="190" column="40" lean-forward="true" selection-start-line="190" selection-start-column="40" selection-end-line="190" selection-end-column="40" />
+            <state relative-caret-position="256">
+              <caret line="169" column="10" selection-start-line="169" selection-start-column="10" selection-end-line="169" selection-end-column="10" />
               <folding>
                 <element signature="e#50#69#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bi63t.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-234">
+              <caret line="92" column="16" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="16" />
+              <folding>
+                <element signature="e#50#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bi63t.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/varint.c">
+        <entry file="file://$PROJECT_DIR$/bi32.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6953">
-              <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
-              <folding>
-                <element signature="e#50#69#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/varint.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bigint.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+            <state relative-caret-position="238">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -126,7 +129,7 @@
         <entry file="file://$PROJECT_DIR$/lenstra.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-end-line="16" selection-end-column="41" />
+              <caret line="16" column="46" selection-start-line="16" selection-end-line="16" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -135,21 +138,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fromi</find>
-      <find>add</find>
-      <find>add_int</find>
-      <find>from</find>
-      <find>divmo</find>
-      <find>compar</find>
-      <find>compare</find>
-      <find>sub</find>
-      <find>coma</find>
-      <find>add_in</find>
       <find>printf</find>
       <find>iszer</find>
-      <find>mul</find>
       <find>negate</find>
-      <find>negate_inp</find>
       <find>fromint</find>
       <find>seed</find>
       <find>printd</find>
@@ -158,13 +149,25 @@
       <find>fromstr</find>
       <find>mod</find>
       <find>gcd</find>
-      <find>27</find>
       <find>rand</find>
       <find>mod(</find>
       <find>v_mod</find>
       <find>V_negate</find>
-      <find>divmod</find>
       <find>div(</find>
+      <find>divmo</find>
+      <find>fromstrin</find>
+      <find>isposit</find>
+      <find>divo</find>
+      <find>compare</find>
+      <find>negate_inp</find>
+      <find>oops</find>
+      <find>27</find>
+      <find>V_</find>
+      <find>mulx2</find>
+      <find>mul</find>
+      <find>mulx</find>
+      <find>isnegat</find>
+      <find>divmod</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,16 +181,19 @@
         <option value="$PROJECT_DIR$/cmake-build-debug/varint.c" />
         <option value="$PROJECT_DIR$/bigint.c" />
         <option value="$PROJECT_DIR$/lenstra.c" />
-        <option value="$PROJECT_DIR$/varint.c" />
         <option value="$PROJECT_DIR$/bigint.h" />
         <option value="$PROJECT_DIR$/varint.h" />
+        <option value="$PROJECT_DIR$/varint.c" />
+        <option value="$PROJECT_DIR$/bi63t.h" />
+        <option value="$PROJECT_DIR$/bi63t.c" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/bi32.c" />
+        <option value="$PROJECT_DIR$/bi32.h" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="18" />
     <option name="y" value="23" />
     <option name="width" value="1422" />
     <option name="height" value="877" />
@@ -205,11 +211,6 @@
             <path>
               <item name="fixedbigint" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixedbigint" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fixedbigint" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixedbigint" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -256,7 +257,7 @@
       <option name="presentableId" value="Default" />
       <updated>1554796349892</updated>
       <workItem from="1554796351435" duration="1930000" />
-      <workItem from="1554798991248" duration="86254000" />
+      <workItem from="1554798991248" duration="100249000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1554796464479</created>
@@ -300,22 +301,29 @@
       <option name="project" value="LOCAL" />
       <updated>1554910665717</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added varint which in the first place was supposed to be variable width integer, but in the end managed to make an implementation that uses 64 bit words anyway. But on 63 bits of each word so its possible to not overflow when adding 2 together. It runs faster than the original for 512 bit bigints.">
+      <created>1555047443157</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1555047443157</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88184000" />
+    <option name="totallyTimeSpent" value="102179000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="23" width="1422" height="877" extended-state="0" />
+    <frame x="0" y="23" width="1422" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15507247" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21594203" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.15159236" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21401274" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21273886" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3821656" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -342,7 +350,8 @@
     <MESSAGE value="got seriously stressed debugging this, comparing with python lenstra.py, but seems to work now although very dissapointed with the speed" />
     <MESSAGE value="ok, fixed some bugs, made some optimisations and now its nearly as fast as the python implementation. Not sure how to make it faster, maybe store the position of the MSB or MS word in the struct and use that to terminate the math operation. It sped it up to note when there was no more carry when adding a small int to a bigint." />
     <MESSAGE value="made some more optimizations, more or less the division algorithm which seemed a bit inifficient. Now if the number of bits is 384 it is faster than my python test." />
-    <option name="LAST_COMMIT_MESSAGE" value="made some more optimizations, more or less the division algorithm which seemed a bit inifficient. Now if the number of bits is 384 it is faster than my python test." />
+    <MESSAGE value="Added varint which in the first place was supposed to be variable width integer, but in the end managed to make an implementation that uses 64 bit words anyway. But on 63 bits of each word so its possible to not overflow when adding 2 together. It runs faster than the original for 512 bit bigints." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added varint which in the first place was supposed to be variable width integer, but in the end managed to make an implementation that uses 64 bit words anyway. But on 63 bits of each word so its possible to not overflow when adding 2 together. It runs faster than the original for 512 bit bigints." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -353,12 +362,12 @@
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bigint.c</url>
+          <url>file://$PROJECT_DIR$/bi32.c</url>
           <line>165</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bigint.c</url>
+          <url>file://$PROJECT_DIR$/bi32.c</url>
           <line>128</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
@@ -404,51 +413,51 @@
     <entry file="file://$PROJECT_DIR$/lenstra.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-end-line="16" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bigint.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <caret line="16" column="46" selection-start-line="16" selection-end-line="16" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+        <state relative-caret-position="482">
+          <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/varint.h">
+    <entry file="file://$PROJECT_DIR$/bi63t.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bigint.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="190" column="40" lean-forward="true" selection-start-line="190" selection-start-column="40" selection-end-line="190" selection-end-column="40" />
+        <state relative-caret-position="-234">
+          <caret line="92" column="16" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="16" />
           <folding>
             <element signature="e#50#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/varint.c">
+    <entry file="file://$PROJECT_DIR$/bi32.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6953">
-          <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+        <state relative-caret-position="256">
+          <caret line="169" column="10" selection-start-line="169" selection-start-column="10" selection-end-line="169" selection-end-column="10" />
           <folding>
             <element signature="e#50#69#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bi63t.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bi32.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>

@@ -6,27 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/Users/alexis/CLionProjects/fixedbigint/bigint.h
-stdint.h
-/Users/alexis/CLionProjects/fixedbigint/stdint.h
-
-/Users/alexis/CLionProjects/fixedbigint/lenstra.h
-bigint.h
-/Users/alexis/CLionProjects/fixedbigint/bigint.h
-
-/Users/alexis/CLionProjects/fixedbigint/main.c
+/Users/alexis/CLionProjects/fixedbigint/bi32.c
+bi32.h
+/Users/alexis/CLionProjects/fixedbigint/bi32.h
+string.h
+-
 stdio.h
 -
-sys/time.h
+assert.h
 -
-bigint.h
-/Users/alexis/CLionProjects/fixedbigint/bigint.h
-lenstra.h
-/Users/alexis/CLionProjects/fixedbigint/lenstra.h
-varint.h
-/Users/alexis/CLionProjects/fixedbigint/varint.h
 
-/Users/alexis/CLionProjects/fixedbigint/varint.h
+/Users/alexis/CLionProjects/fixedbigint/bi32.h
 stdint.h
--
+/Users/alexis/CLionProjects/fixedbigint/stdint.h
 
