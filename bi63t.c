@@ -186,6 +186,10 @@ BI63_t* BI63_mul(BI63_t *a, BI63_t *b, BI63_t *c) {
             if (aa==0)
                 continue;
 
+            // multiply row and column entry together
+            // get 126 bit result in hi, lo
+            // tiny bit of shifting to split into 2 63 bit numbers
+
             uint64_t a_lo = (uint64_t)(uint32_t)aa;
             uint64_t a_hi = aa >> 32u;
 

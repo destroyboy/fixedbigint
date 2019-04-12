@@ -12,20 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc3e915b-29f8-468b-bf73-117738204e9a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bi32.c" beforeDir="false" afterPath="$PROJECT_DIR$/bi32.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bi32.h" beforeDir="false" afterPath="$PROJECT_DIR$/bi32.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bi63t.c" beforeDir="false" afterPath="$PROJECT_DIR$/bi63t.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bi63t.h" beforeDir="false" afterPath="$PROJECT_DIR$/bi63t.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/bi32.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/bi32.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/bi63t.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/bi63t.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/lenstra.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/lenstra.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixedbigint.dir/main.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/fixedbigint" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/fixedbigint" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lenstra.c" beforeDir="false" afterPath="$PROJECT_DIR$/lenstra.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lenstra.h" beforeDir="false" afterPath="$PROJECT_DIR$/lenstra.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="87" column="19" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
+            <state relative-caret-position="359">
+              <caret line="93" column="13" lean-forward="true" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -73,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bi63t.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3833">
-              <caret line="269" column="67" selection-start-line="269" selection-start-column="67" selection-end-line="269" selection-end-column="67" />
+            <state relative-caret-position="937">
+              <caret line="198" column="29" selection-start-line="198" selection-start-column="29" selection-end-line="198" selection-end-column="29" />
               <folding>
                 <element signature="e#50#69#0" expanded="true" />
               </folding>
@@ -88,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bi63t.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
+            <state relative-caret-position="277">
               <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
             </state>
           </provider>
@@ -250,7 +237,7 @@
       <option name="presentableId" value="Default" />
       <updated>1554796349892</updated>
       <workItem from="1554796351435" duration="1930000" />
-      <workItem from="1554798991248" duration="106588000" />
+      <workItem from="1554798991248" duration="107555000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1554796464479</created>
@@ -308,21 +295,28 @@
       <option name="project" value="LOCAL" />
       <updated>1555069694133</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="bit more tidying up">
+      <created>1555083837699</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1555083837699</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108518000" />
+    <option name="totallyTimeSpent" value="109485000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1422" height="877" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21594203" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21594203" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.15159236" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23949045" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23949045" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3821656" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -331,7 +325,7 @@
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32866243" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.21528663" />
       <window_info anchor="bottom" id="CMake" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -351,7 +345,8 @@
     <MESSAGE value="made some more optimizations, more or less the division algorithm which seemed a bit inifficient. Now if the number of bits is 384 it is faster than my python test." />
     <MESSAGE value="Added varint which in the first place was supposed to be variable width integer, but in the end managed to make an implementation that uses 64 bit words anyway. But on 63 bits of each word so its possible to not overflow when adding 2 together. It runs faster than the original for 512 bit bigints." />
     <MESSAGE value="Changed naming a bit, now we have BI32_t and BI63_t, more optimisations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed naming a bit, now we have BI32_t and BI63_t, more optimisations" />
+    <MESSAGE value="bit more tidying up" />
+    <option name="LAST_COMMIT_MESSAGE" value="bit more tidying up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -417,13 +412,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bi63t.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bi32.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -434,13 +422,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bi63t.c">
+    <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3833">
-          <caret line="269" column="67" selection-start-line="269" selection-start-column="67" selection-end-line="269" selection-end-column="67" />
+        <state relative-caret-position="359">
+          <caret line="93" column="13" lean-forward="true" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
           <folding>
-            <element signature="e#50#69#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bi63t.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -451,12 +446,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
+    <entry file="file://$PROJECT_DIR$/bi63t.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="87" column="19" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
+        <state relative-caret-position="937">
+          <caret line="198" column="29" selection-start-line="198" selection-start-column="29" selection-end-line="198" selection-end-column="29" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#50#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
